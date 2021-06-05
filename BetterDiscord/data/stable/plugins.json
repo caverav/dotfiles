@@ -1,0 +1,23 @@
+{
+    "InvisibleTyping": false,
+    "ShowConnections": false,
+    "ShowHiddenChannels": false,
+    "GameActivityToggle": false,
+    "SendLargeMessages": false,
+    "GoogleTranslateOption": false,
+    "PluginRepo": false,
+    "ImageUtilities": false,
+    "ThemeRepo": false,
+    "DoNotTrack": false,
+    "ServerSearch": false,
+    "BetterCodeblocks": false,
+    "ZeresPluginLibrary": false,
+    "BDFDB": true,
+    "FreeEmojis": false,
+    "TypingIndicator": false,
+    "BugReportHelper": false,
+    "NotificationSounds": false,
+    "CopyRawMessage": false,
+    "GifSaver": false,
+    "HideEmbedLink": false
+}

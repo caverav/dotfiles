@@ -1,0 +1,10 @@
+{
+	"general": {
+		"playDisable": false,
+		"playEnable": false
+	},
+	"selections": {
+		"enableSound": "stream_started",
+		"disableSound": "stream_ended"
+	}
+}

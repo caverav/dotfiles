@@ -1,0 +1,18 @@
+{
+	"changeLogs": {
+		"CopyRawMessage": "1.1.2",
+		"GoogleTranslateOption": "2.2.6",
+		"ImageUtilities": "4.4.0",
+		"SendLargeMessages": "1.6.7",
+		"ShowConnections": "1.0.4",
+		"ShowHiddenChannels": "2.9.7"
+	},
+	"choices": {
+		"toastPosition": "right"
+	},
+	"general": {
+		"showToasts": true,
+		"showSupportBadges": true,
+		"useChromium": false
+	}
+}
