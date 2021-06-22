@@ -1,0 +1,2 @@
+kitty @ set-colors -a "~/.config/kitty/kitty-themes/themes/$1.conf"
+
