@@ -13,20 +13,26 @@
       <ExtraDataItem name="GUI/GuestControl/ProcessControlSplitterHints" value="408,"/>
       <ExtraDataItem name="GUI/HideDescriptionForWizards" value="NewVM"/>
       <ExtraDataItem name="GUI/LanguageID" value="es"/>
-      <ExtraDataItem name="GUI/LastItemSelected" value="m=Kali-Linux-2021.1-vbox-amd64"/>
-      <ExtraDataItem name="GUI/LastWindowPosition" value="0,72,1920,1008,max"/>
+      <ExtraDataItem name="GUI/LastItemSelected" value="m=Gentoo2"/>
+      <ExtraDataItem name="GUI/LastWindowPosition" value="0,22,1920,1058"/>
+      <ExtraDataItem name="GUI/LogViewerOptions" value="monospace,noFontStyleName,9"/>
+      <ExtraDataItem name="GUI/LogWindowGeometry" value="970,32,940,1038"/>
       <ExtraDataItem name="GUI/MaxGuestResolution" value="640,480"/>
       <ExtraDataItem name="GUI/RecentFolderCD" value="/home/camilo/Descargas"/>
       <ExtraDataItem name="GUI/RecentFolderHD" value="/home/camilo/VirtualBox VMs"/>
       <ExtraDataItem name="GUI/RecentListCD" value="/home/camilo/Descargas/install-amd64-minimal-20210516T214503Z.iso,/home/camilo/Descargas/macOS Catalina 10_15.iso,/home/camilo/VirtualBox VMs/MAc/MAc.viso,/home/camilo/macOS-Simple-KVM/tools/FetchMacOS/BaseSystem/BaseSystem.dmg,--"/>
       <ExtraDataItem name="GUI/RecentListHD" value="/home/camilo/VirtualBox VMs/MiDisco.vdi,/home/camilo/VirtualBox VMs/macOS_Catalina_10_15_ISO/macOS_Catalina_10_15_ISO_1.vdi,/home/camilo/macOS-Simple-KVM/ESP.vdi,/home/camilo/macOS-Simple-KVM/ESP.qcow2,/home/camilo/macOS-Simple-KVM/MiDisco.qcow2"/>
       <ExtraDataItem name="GUI/SessionInformationDialogGeometry" value="480,304,960,527"/>
+      <ExtraDataItem name="GUI/SoftKeyboardColorTheme" value="Custom,#ff878787,#ff000000,#ff676767,#ff9b6767,#fffafafa"/>
+      <ExtraDataItem name="GUI/SoftKeyboardDialogGeometry" value="968,30,940,1038"/>
+      <ExtraDataItem name="GUI/SoftKeyboardSelectedColorTheme" value="Custom"/>
+      <ExtraDataItem name="GUI/SoftKeyboardSelectedLayout" value="{25867c1e-0455-4303-bf76-1c3ae4cca042}"/>
       <ExtraDataItem name="GUI/SplitterSizes" value="635,1284"/>
       <ExtraDataItem name="GUI/SuppressMessages" value="confirmInputCapture,remindAboutAutoCapture,confirmGoingFullscreen,remindAboutMouseIntegration"/>
       <ExtraDataItem name="GUI/Toolbar" value="false"/>
       <ExtraDataItem name="GUI/Tools/LastItemsSelected" value="Welcome,Details"/>
-      <ExtraDataItem name="GUI/UpdateCheckCount" value="16"/>
-      <ExtraDataItem name="GUI/UpdateDate" value="1 d, 2021-06-01, stable, 6.1.18"/>
+      <ExtraDataItem name="GUI/UpdateCheckCount" value="19"/>
+      <ExtraDataItem name="GUI/UpdateDate" value="1 d, 2021-06-27, stable, 6.1.18"/>
       <ExtraDataItem name="GUI/VISOCreator/RecentFolder" value="/home/camilo/macOS-Simple-KVM"/>
     </ExtraData>
     <MachineRegistry>

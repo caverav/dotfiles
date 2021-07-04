@@ -39,5 +39,6 @@
   "has_git_repos": true,
   "gusr": {
     "dgc": "468a10f07a2aafbf73f9113c4104a9e45b210391be8cc0db9b07590cd452573b"
-  }
+  },
+  "exclude_file_masks": null
 }

@@ -34,7 +34,7 @@
 		"emojis": true
 	},
 	"zoomSettings": {
-		"lensSize": 200,
-		"zoomLevel": 2
+		"lensSize": 50,
+		"zoomLevel": 1
 	}
 }
