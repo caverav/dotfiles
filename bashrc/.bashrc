@@ -76,6 +76,7 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+    alias ll='ls -lah'
     alias camilofvv='ssh camilofvv@camilo.fvv.cl'
     alias py='python3'
     alias speedtest='/home/camilo/C/ookla-speedtest-1.0.0-x86_64-linux/speedtest'
@@ -83,6 +84,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias osu='wine /home/camilo/.wine/drive_c/users/camilo/Local\ Settings/Application\ Data/osu\!/osu\!.exe'
     alias edex='/home/camilo/Descargas/eDEX-UI-Linux-x86_64.AppImage --no-sandbox'
     alias cyberchef='firefox /home/camilo/Descargas/CyberChef/CyberChef_v9.27.6.html'
+    alias apagao='sudo shutdown now'
+    alias v='nvim'
+    alias d='ranger'
+    alias hola='bash .xinitrc & exit & xkill'
+    alias gittoken='xclip -sel clip /home/camilo/authgit'
     #alias alacritty='snap run alacritty'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -137,7 +143,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 #export PATH="/home/camilo/.emacs.d/bin"
-neofetch
+/home/camilo/.local/bin/fm6000 -c cyan -l 20 -dog -n -de dwm-camilo
 export PATH="$HOME/.emacs.d/bin:$PATH"
 . "$HOME/.cargo/env"
 #export PATH="/snap/bin:$PATH"
@@ -154,3 +160,5 @@ function _update_ps1() {
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
+
+export PATH="/home/camilo/.local/bin:/home/camilo/.cargo/bin:/home/camilo/.emacs.d/bin:/home/camilo/miniconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/camilo/developer/flutter/bin:/snap/bin:/home/camilo/.dotnet/tools:/home/camilo/.fzf/bin"

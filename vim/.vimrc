@@ -60,6 +60,7 @@ Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'codota/tabnine-vim'
 
 call plug#end()
 let g:deoplete#enable_at_startup = 1
@@ -154,3 +155,4 @@ autocmd BufWritePre * :call TrimWhitespace()
 autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F5>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 hi Normal guibg=NONE ctermbg=NONE
+set rtp+=~/tabnine-vim
