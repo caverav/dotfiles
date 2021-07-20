@@ -13,15 +13,16 @@ Este repositorio git contiene las configuraciones que considero importantes que 
   cd dotfiles
 ```
 
-2) Incorporar las configuraciones, existen 2 opciones recomendadas:
+2) Incorporar las configuraciones:
 
 
-    1\) Crear los enlaces simbólicos con GNU Stow:
+    1\) Crear los enlaces simbólicos con GNU Stow (Recomendada, es más simple y al ser enlaces simbólicos no se duplican archivos):
     ```bash
     stow *
     ```
 
     > **_NOTA:_** requiere GNU stow, para instalarlo en distribuciones basadas en debian debe ejecutar (en otras distribuciones sólo debe reemplazar apt con su gestor de paquetes):```sudo apt install stow```
+    
     2\) Copiar manualmente los archivos:
     
     ```bash
