@@ -13,7 +13,7 @@ Este repositorio git contiene las configuraciones que considero importantes que 
   cd dotfiles
 ```
 
-2) Incorporar las configuraciones:
+2) Incorporar las configuraciones (Debe estar en el directorio clonado dotfiles):
 
 
 
