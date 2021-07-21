@@ -88,7 +88,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias v='nvim'
     alias d='ranger'
     alias hola='bash .xinitrc & exit & xkill'
-    alias gittoken='xclip -sel clip /home/camilo/authgit'
+    alias push='xclip -sel clip /home/camilo/authgit && git push && echo 1 | xclip -sel clip'
     #alias alacritty='snap run alacritty'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
