@@ -4,3 +4,4 @@ stow -D compton
 stow -D kitty
 stow -D nvim
 stow -D vim
+stow -D alacritty
