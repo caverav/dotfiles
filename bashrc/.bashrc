@@ -162,3 +162,4 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 fi
 
 export PATH="/home/camilo/.local/bin:/home/camilo/.cargo/bin:/home/camilo/.emacs.d/bin:/home/camilo/miniconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/camilo/developer/flutter/bin:/snap/bin:/home/camilo/.dotnet/tools:/home/camilo/.fzf/bin"
+source /home/camilo/alacritty/extra/completions/alacritty.bash
