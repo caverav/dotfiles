@@ -98,7 +98,8 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
 
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme synthwave
 set background=dark
 
 if executable('rg')
