@@ -10,7 +10,8 @@ fi
 bash /home/camilo/xinputenable.sh
 bash /home/camilo/dwm-camilo/dwmbar &
 /home/camilo/.fehbg &
-compton &
+picom &
 dunst &
 setxkbmap latam &
+mkdir /tmp/scrot
 exec dwm

@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/etc/systemd/system/default.target.wants'
 let g:netrw_dirhist_3='/usr/share/xsessions/dwm.desktop'
 let g:netrw_dirhist_2='/usr/share/xsessions'
 let g:netrw_dirhist_1='/home/camilo/.config/nvim/begood'

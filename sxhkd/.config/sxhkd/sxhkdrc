@@ -141,3 +141,9 @@ XF86AudioRaiseVolume
     amixer set Master 5%+
 XF86AudioMute
     amixer set Master toggle
+
+super + shift + s
+    bash ~/dwm-camilo/screen/sect
+super + shift + ctrl + s
+    bash ~/dwm-camilo/screen/sectg
+

@@ -98,36 +98,36 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: Hack Nerd Font
-# The `style` can be specified to pick a specific face.
+    # The `style` can be specified to pick a specific face.
     style: Regular
-# Bold font face
-#bold:
-# Font family
-#
-# If the bold family is not specified, it will fall back to the
-# value specified for the normal font.
-#family: monospace
-# The `style` can be specified to pick a specific face.
-#style: Bold
-# Italic font face
-#italic:
-# Font family
-#
-# If the italic family is not specified, it will fall back to the
-# value specified for the normal font.
-#family: monospace
-# The `style` can be specified to pick a specific face.
-#style: Italic
-# Bold italic font face
-#bold_italic:
-# Font family
-#
-# If the bold italic family is not specified, it will fall back to the
-# value specified for the normal font.
-#family: monospace
-# The `style` can be specified to pick a specific face.
-#style: Bold Italic
-# Point size
+  # Bold font face
+  #bold:
+  # Font family
+  #
+  # If the bold family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
+  # The `style` can be specified to pick a specific face.
+  #style: Bold
+  # Italic font face
+  #italic:
+  # Font family
+  #
+  # If the italic family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
+  # The `style` can be specified to pick a specific face.
+  #style: Italic
+  # Bold italic font face
+  #bold_italic:
+  # Font family
+  #
+  # If the bold italic family is not specified, it will fall back to the
+  # value specified for the normal font.
+  #family: monospace
+  # The `style` can be specified to pick a specific face.
+  #style: Bold Italic
+  # Point size
   size: 8
 
 # Offset is the extra space around each character. `offset.y` can be thought
@@ -315,31 +315,35 @@ font:
 # The value `0.0` is completely transparent and `1.0` is opaque.
 background_opacity: 0.8
 colors:
+  # Default colors
   primary:
     background: '#000000'
-    foreground: '#00ff00'
+    foreground: '#ffffff'
+  cursor:
+    text: '#F81CE5'
+    cursor: '#ffffff'
 
   # Normal colors
   normal:
-    black: '#2e3436'
-    red: '#cc0000'
-    green: '#73d216'
-    yellow: '#edd400'
-    blue: '#3465a4'
-    magenta: '#75507b'
-    cyan: '#06989a'
-    white: '#d3d7cf'
+    black: '#000000'
+    red: '#fe0100'
+    green: '#33ff00'
+    yellow: '#feff00'
+    blue: '#0066ff'
+    magenta: '#cc00ff'
+    cyan: '#00ffff'
+    white: '#d0d0d0'
 
   # Bright colors
   bright:
-    black: '#2e3436'
-    red: '#ef2929'
-    green: '#8ae234'
-    yellow: '#fce94f'
-    blue: '#729fcf'
-    magenta: '#ad7fa8'
-    cyan: '#34e2e2'
-    white: '#eeeeec'
+    black: '#808080'
+    red: '#fe0100'
+    green: '#33ff00'
+    yellow: '#feff00'
+    blue: '#0066ff'
+    magenta: '#cc00ff'
+    cyan: '#00ffff'
+    white: '#FFFFFF'
 
 #selection:
 # This string contains all characters that are used as separators for
