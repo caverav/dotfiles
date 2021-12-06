@@ -20,10 +20,17 @@ set undofile
 set incsearch
 set termguicolors
 set scrolloff=8
-
 " Give more space for displaying messages.
 set cmdheight=2
 
+" let g:presence_enable_line_number  = 1
+let g:presence_line_number_text    = "Línea %s de %s"
+let g:presence_editing_text        = "Editando %s"
+let g:presence_file_explorer_text  = "Navegando %s"
+let g:presence_git_commit_text     = "Committing changes"
+let g:presence_plugin_manager_text = "Managing plugins"
+let g:presence_reading_text        = "Leyendo %s"
+let g:presence_workspace_text      = "Trabajando en %s"
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=50
@@ -46,17 +53,31 @@ endif
 Plug 'deoplete-plugins/deoplete-jedi'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tweekmonster/gofmt.vim'
+Plug 'davidgranstrom/nvim-markdown-preview'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'vim-utils/vim-man'
+Plug 'BurntSushi/ripgrep'
 Plug 'mbbill/undotree'
+Plug 'mcchrish/nnn.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdcommenter'
+" Plug 'preservim/nerdcommenter'
+Plug 'andweeb/presence.nvim'
 Plug 'Townk/vim-autoclose'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'edluffy/specs.nvim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'haringsrob/nvim_context_vt'
+
 
 call plug#end()
 let g:deoplete#enable_at_startup = 1
@@ -107,7 +128,6 @@ nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>vwm :colorscheme gruvbox<bar>:set background=dark<CR>
 vnoremap X "_d
 inoremap <C-c> <esc>
 
@@ -136,6 +156,11 @@ nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
 nnoremap <leader>cr :CocRestart
 
+
+" # fzf
+nnoremap <C-t> <cmd>Telescope find_files<cr>
+nnoremap <Leader>. :NERDTreeToggle<CR>
+
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -147,3 +172,22 @@ autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%,
 autocmd FileType python imap <buffer> <F5>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 hi Normal guibg=NONE ctermbg=NONE
 
+lua << EOF
+require('specs').setup{
+    show_jumps  = true,
+    min_jump = 30,
+    popup = {
+        delay_ms = 0, -- delay before popup displays
+        inc_ms = 10, -- time increments used for fade/resize effects
+        blend = 10, -- starting blend, between 0-100 (fully transparent), see :h winblend
+        width = 10,
+        winhl = "PMenu",
+        fader = require('specs').linear_fader,
+        resizer = require('specs').shrink_resizer
+    },
+    ignore_filetypes = {},
+    ignore_buftypes = {
+        nofile = true,
+    },
+}
+EOF
