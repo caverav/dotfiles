@@ -218,6 +218,7 @@ precmd() {
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='lsd'
     alias ll='lsd -lh --group-dirs=first'
     alias la='lsd -a --group-dirs=first'
     alias l='lsd --group-dirs=first'
@@ -243,8 +244,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias hola='bash .xinitrc & exit & xkill'
     alias ip='ip -c'
-    alias ll='ls -lah'
-    alias ls='ls --color=auto'
+    #alias ll='ls -lah'
+    #alias ls='ls --color=auto'
     alias osu='wine /home/camilo/.wine/drive_c/users/camilo/Local\ Settings/Application\ Data/osu\!/osu\!.exe'
     alias py=python3
     alias speedtest=/home/camilo/C/ookla-speedtest-1.0.0-x86_64-linux/speedtest
@@ -346,7 +347,9 @@ fi
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
-source ~/.powerlevel10k/powerlevel10k.zsh-theme
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+path+=/home/camilo/.local/bin/
