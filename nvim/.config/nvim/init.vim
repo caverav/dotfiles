@@ -63,7 +63,7 @@ Plug 'mcchrish/nnn.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'andweeb/presence.nvim'
 Plug 'Townk/vim-autoclose'
 Plug 'phanviet/vim-monokai-pro'
@@ -77,6 +77,7 @@ Plug 'preservim/nerdtree' |
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'haringsrob/nvim_context_vt'
+Plug 'github/copilot.vim'
 
 
 call plug#end()
