@@ -231,7 +231,7 @@ if [ -x /usr/bin/dircolors ]; then
 
     alias nano='nano -x -O'
     alias dirsearch='sudo dirsearch'
-    alias android-studio='sh /home/camilo/androidstud/android-studio/bin/studio.sh'
+    # alias android-studio='sh /home/camilo/androidstud/android-studio/bin/studio.sh'
     alias apagao='sudo shutdown now'
     alias camilofvv='ssh camilofvv@camilo.fvv.cl'
     alias cat=bat
@@ -355,3 +355,9 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 path+=/home/camilo/.local/bin/
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+eval $(thefuck --alias)

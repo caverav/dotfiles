@@ -1,3 +1,5 @@
+set nocompatible
+filetype plugin on
 syntax on
 
 set guicursor=
@@ -23,6 +25,7 @@ set scrolloff=8
 " Give more space for displaying messages.
 set cmdheight=2
 
+let g:vimwiki_list = [ {'syntax': 'markdown', 'ext': '.md'} ]
 " let g:presence_enable_line_number  = 1
 let g:presence_line_number_text    = "Línea %s de %s"
 let g:presence_editing_text        = "Editando %s"
@@ -78,6 +81,9 @@ Plug 'preservim/nerdtree' |
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'haringsrob/nvim_context_vt'
 Plug 'github/copilot.vim'
+Plug 'habamax/vim-godot'
+Plug 'vimwiki/vimwiki'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 
 call plug#end()
@@ -193,3 +199,4 @@ require('specs').setup{
     },
 }
 EOF
+" let g:copilot_filetypes = { 'yaml': v:true }
