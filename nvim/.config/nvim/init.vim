@@ -24,7 +24,11 @@ set termguicolors
 set scrolloff=8
 " Give more space for displaying messages.
 set cmdheight=2
-
+let g:tex_flavor  = 'latex'
+let g:tex_conceal = ''
+let g:vimtex_fold_manual = 1
+let g:vimtex_latexmk_continuous = 1
+let g:vimtex_compiler_progname = 'nvr'
 let g:vimwiki_list = [ {'syntax': 'markdown', 'ext': '.md'} ]
 " let g:presence_enable_line_number  = 1
 let g:presence_line_number_text    = "Línea %s de %s"
@@ -84,7 +88,9 @@ Plug 'github/copilot.vim'
 Plug 'habamax/vim-godot'
 Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-
+Plug 'lervag/vimtex'
+Plug 'Konfekt/FastFold'
+Plug 'matze/vim-tex-fold'
 
 call plug#end()
 let g:deoplete#enable_at_startup = 1
