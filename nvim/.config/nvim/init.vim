@@ -24,6 +24,14 @@ set termguicolors
 set scrolloff=8
 " Give more space for displaying messages.
 set cmdheight=2
+let g:ale_linters = {
+  \ 'javascript': ['eslint'],
+  \}
+
+let g:ale_fixers = {
+  \ 'javascript': ['prettier', 'eslint']
+  \ }
+let g:ale_fix_on_save = 1
 let g:tex_flavor  = 'latex'
 let g:tex_conceal = ''
 let g:vimtex_fold_manual = 1
@@ -58,7 +66,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'deoplete-plugins/deoplete-jedi'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tweekmonster/gofmt.vim'
 Plug 'davidgranstrom/nvim-markdown-preview'
 Plug 'nvim-lua/plenary.nvim'
@@ -83,14 +91,21 @@ Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'haringsrob/nvim_context_vt'
 Plug 'github/copilot.vim'
-Plug 'habamax/vim-godot'
 Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'lervag/vimtex'
 Plug 'Konfekt/FastFold'
 Plug 'matze/vim-tex-fold'
+Plug 'is0n/jaq-nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'kosayoda/nvim-lightbulb'
+Plug 'chipsenkbeil/distant.nvim'
+Plug 'tpope/vim-rails'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
+Plug 'w0rp/ale'
+Plug 'tanvirtin/vgit.nvim'
 
 call plug#end()
 let g:deoplete#enable_at_startup = 1
@@ -131,6 +146,7 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>t :History<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
@@ -144,7 +160,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 vnoremap X "_d
 inoremap <C-c> <esc>
-
+nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
@@ -204,5 +220,218 @@ require('specs').setup{
         nofile = true,
     },
 }
+
 EOF
-" let g:copilot_filetypes = { 'yaml': v:true }
+
+lua << EOF
+require('vgit').setup({
+settings ={
+live_gutter = {
+      enabled = false,
+      edge_navigation = true, -- This allows users to navigate within a hunk
+    },
+  },
+}
+)
+EOF
+
+"" NCM2
+augroup NCM2
+  autocmd!
+  " some other settings...
+  " uncomment this block if you use vimtex for LaTex
+  autocmd Filetype tex call ncm2#register_source({
+            \ 'name': 'vimtex',
+            \ 'priority': 8,
+            \ 'scope': ['tex'],
+            \ 'mark': 'tex',
+            \ 'word_pattern': '\w+',
+            \ 'complete_pattern': g:vimtex#re#ncm2,
+            \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+            \ })
+
+augroup END
+let g:copilot_filetypes = { '*': v:true }
+
+
+lua << EOF
+require('jaq-nvim').setup{
+	-- Commands used with 'Jaq'
+	cmds = {
+
+		-- Uses external commands such as 'g++' and 'cargo'
+		external = {
+			typescript = "deno run %",
+			javascript = "node %",
+			markdown = "glow %",
+			python = "python3 %",
+			rust = "rustc % && ./$fileBase && rm $fileBase",
+			cpp = "g++ % -o $fileBase && ./$fileBase",
+			go = "go run %",
+			sh = "sh %",
+		},
+
+		-- Default UI used (see `Usage` for options)
+		-- Uses internal commands such as 'source' and 'luafile'
+		internal = {
+			lua = "luafile %",
+			vim = "source %"
+		}
+	},
+
+	-- UI settings
+	ui = {
+		-- Start in insert mode
+		startinsert = false,
+
+		-- Switch back to current file
+		-- after using Jaq
+		wincmd      = false,
+
+		-- Floating Window / FTerm settings
+		float = {
+			-- Floating window border (see ':h nvim_open_win')
+			border    = "rounded",
+
+			-- Num from `0 - 1` for measurements
+			height    = 0.8,
+			width     = 0.8,
+			x         = 0.5,
+			y         = 0.5,
+
+			-- Highlight group for floating window/border (see ':h winhl')
+			border_hl = "FloatBorder",
+			float_hl  = "Normal",
+
+			-- Floating Window Transparency (see ':h winblend')
+			blend     = 0
+		},
+
+		terminal = {
+			-- Position of terminal
+			position = "bot",
+
+			-- Open the terminal without line numbers
+			line_no = false,
+
+			-- Size of terminal
+			size     = 10
+		},
+
+		toggleterm = {
+			-- Position of terminal, one of "vertical" | "horizontal" | "window" | "float"
+			position = "horizontal",
+
+			-- Size of terminal
+			size     = 10
+		},
+
+		quickfix = {
+			-- Position of quickfix window
+			position = "bot",
+
+			-- Size of quickfix window
+			size     = 10
+		}
+	}
+}
+-- Showing defaults
+require'nvim-lightbulb'.setup {
+    -- LSP client names to ignore
+    -- Example: {"sumneko_lua", "null-ls"}
+    ignore = {},
+    sign = {
+        enabled = true,
+        -- Priority of the gutter sign
+        priority = 10,
+    },
+    float = {
+        enabled = false,
+        -- Text to show in the popup float
+        text = "💡",
+        -- Available keys for window options:
+        -- - height     of floating window
+        -- - width      of floating window
+        -- - wrap_at    character to wrap at for computing height
+        -- - max_width  maximal width of floating window
+        -- - max_height maximal height of floating window
+        -- - pad_left   number of columns to pad contents at left
+        -- - pad_right  number of columns to pad contents at right
+        -- - pad_top    number of lines to pad contents at top
+        -- - pad_bottom number of lines to pad contents at bottom
+        -- - offset_x   x-axis offset of the floating window
+        -- - offset_y   y-axis offset of the floating window
+        -- - anchor     corner of float to place at the cursor (NW, NE, SW, SE)
+        -- - winblend   transparency of the window (0-100)
+        win_opts = {},
+    },
+    virtual_text = {
+        enabled = false,
+        -- Text to show at virtual text
+        text = "💡",
+        -- highlight mode to use for virtual text (replace, combine, blend), see :help nvim_buf_set_extmark() for reference
+        hl_mode = "replace",
+    },
+    status_text = {
+        enabled = false,
+        -- Text to provide when code actions are available
+        text = "💡",
+        -- Text to provide when no actions are available
+        text_unavailable = ""
+    }
+}
+EOF
+
+lua << EOF
+require'lspconfig'.dockerls.setup{}
+require'lspconfig'.tailwindcss.setup{}
+require'lspconfig'.clangd.setup{}
+require'lspconfig'.solargraph.setup{}
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.eslint.setup{}
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+
+local nvim_lsp = require 'lspconfig'
+  local on_attach = function(_, bufnr)
+    local function buf_set_keymap(...)
+      vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+    local function buf_set_option(...)
+      vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap = true, silent = true }
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  end
+local M = {}
+
+local lsp_util = vim.lsp.util
+
+function M.code_action_listener()
+  local context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
+  local params = lsp_util.make_range_params()
+  params.context = context
+  vim.lsp.buf_request(0, 'textDocument/codeAction', params, function(err, _, result)
+    -- do something with result - e.g. check if empty and show some indication such as a sign
+  end)
+end
+
+return M
+EOF

@@ -48,6 +48,7 @@ Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'tweekmonster/gofmt.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
+Plug 'github/copilot.vim'
 Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -60,7 +61,7 @@ Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'ThePrimeagen/vim-be-good'
-Plug 'codota/tabnine-vim'
+"Plug 'codota/tabnine-vim'
 
 call plug#end()
 let g:deoplete#enable_at_startup = 1
