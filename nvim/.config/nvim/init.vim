@@ -1,7 +1,11 @@
+" vim:foldmethod=marker
+" INITIAL SETS{{{
 set nocompatible
 filetype plugin on
 syntax on
+" }}}
 
+" sets{{{
 set guicursor=
 set noshowmatch
 set relativenumber
@@ -24,6 +28,14 @@ set termguicolors
 set scrolloff=8
 " Give more space for displaying messages.
 set cmdheight=2
+set updatetime=50
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+"set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+"}}}
+
+" ALE{{{
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \}
@@ -32,12 +44,18 @@ let g:ale_fixers = {
   \ 'javascript': ['prettier', 'eslint']
   \ }
 let g:ale_fix_on_save = 1
+"}}}
+
+" LaTeX{{{
 let g:tex_flavor  = 'latex'
 let g:tex_conceal = ''
 let g:vimtex_fold_manual = 1
 let g:vimtex_latexmk_continuous = 1
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimwiki_list = [ {'syntax': 'markdown', 'ext': '.md'} ]
+"}}}
+
+" presence vars{{{
 " let g:presence_enable_line_number  = 1
 let g:presence_line_number_text    = "Línea %s de %s"
 let g:presence_editing_text        = "Editando %s"
@@ -46,16 +64,9 @@ let g:presence_git_commit_text     = "Committing changes"
 let g:presence_plugin_manager_text = "Managing plugins"
 let g:presence_reading_text        = "Leyendo %s"
 let g:presence_workspace_text      = "Trabajando en %s"
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=50
+"}}}
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-"set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
+" Plugs{{{
 call plug#begin('~/local/share/vim/plugged')
 
 if has('nvim')
@@ -84,7 +95,6 @@ Plug 'Townk/vim-autoclose'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
-Plug 'ThePrimeagen/vim-be-good'
 Plug 'edluffy/specs.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree' |
@@ -100,11 +110,11 @@ Plug 'matze/vim-tex-fold'
 Plug 'is0n/jaq-nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kosayoda/nvim-lightbulb'
-Plug 'chipsenkbeil/distant.nvim'
+" Plug 'chipsenkbeil/distant.nvim'
 Plug 'tpope/vim-rails'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
-Plug 'w0rp/ale'
+Plug 'w0rp/ale' " LSP CHECKING
 Plug 'tanvirtin/vgit.nvim'
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'tami5/lspsaga.nvim'
@@ -115,15 +125,42 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
-Plug 'EdenEast/nightfox.nvim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'tpope/vim-repeat'
-Plug 'ggandor/lightspeed.nvim'
+Plug 'ggandor/lightspeed.nvim' " For moving in screen
+Plug 'windwp/nvim-ts-autotag'
+Plug 'askfiy/nvim-picgo'
+" md
+Plug 'Iron-E/nvim-libmodal'
+Plug 'Iron-E/nvim-marktext'
+Plug 'plasticboy/vim-markdown'
+Plug 'Iron-E/nvim-typora'
+"img
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope-media-files.nvim'
+
+" Themes
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'EdenEast/nightfox.nvim'
+
+
 
 call plug#end()
+"}}}
+
+lua << EOF
+require('nvim-ts-autotag').setup()
+vim.api.nvim_set_keymap("n", "<leader>ns", ":lua require('package-info').show()<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap(
+    "n",
+    "<leader>ns",
+    "<cmd>lua require('package-info').show()<cr>",
+    { silent = true, noremap = true }
+)
+EOF
+
 let g:deoplete#enable_at_startup = 1
 
-" --- vim go (polyglot) settings.
+" --- vim go (polyglot) settings.{{{
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -137,11 +174,37 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 1"
+"}}}
 
+" fastfold{{{
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+let g:markdown_folding = 1
+let g:rst_fold_enabled = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:zsh_fold_enable = 1
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
+let g:fortran_fold=1
+let g:clojure_fold = 1
+let g:baan_fold=1
+"}}}
+
+" BACK & THEME{{{
 let g:tokyonight_style = "night"
 colorscheme tokyonight
 set background=dark
+hi Normal guibg=NONE ctermbg=NONE
+"}}}
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -155,6 +218,7 @@ let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
+" MAPS{{{
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -169,6 +233,7 @@ nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
+
 " LSPSAGA
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
@@ -227,9 +292,11 @@ endfun
 autocmd BufWritePre * :call TrimWhitespace()
 autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F5>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-" hi Normal guibg=NONE ctermbg=NONE
 
 nmap s <Plug>Lightspeed_omni_s
+"}}}
+
+"SPECS{{{
 lua << EOF
 require('specs').setup{
     show_jumps  = true,
@@ -250,7 +317,9 @@ require('specs').setup{
 }
 
 EOF
+"}}}
 
+"VGIT{{{
 lua << EOF
 require('vgit').setup({
 settings ={
@@ -262,8 +331,9 @@ live_gutter = {
 }
 )
 EOF
+"}}}
 
-"" NCM2
+"" NCM2{{{
 augroup NCM2
   autocmd!
   " some other settings...
@@ -279,9 +349,11 @@ augroup NCM2
             \ })
 
 augroup END
+"}}}
+
 let g:copilot_filetypes = { '*': v:true }
 
-
+" JAQ{{{
 lua << EOF
 require('jaq-nvim').setup{
 	-- Commands used with 'Jaq'
@@ -363,7 +435,9 @@ require('jaq-nvim').setup{
 		}
 	}
 }
--- Showing defaults
+--"}}}
+
+-- lightbulb"{{{
 require'nvim-lightbulb'.setup {
     -- LSP client names to ignore
     -- Example: {"sumneko_lua", "null-ls"}
@@ -408,16 +482,20 @@ require'nvim-lightbulb'.setup {
         text_unavailable = ""
     }
 }
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
 EOF
+"}}}
 
+"LSPCONFIG{{{
 lua << EOF
+-- agregar abajo
 require'lspconfig'.dockerls.setup{}
 require'lspconfig'.tailwindcss.setup{}
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.solargraph.setup{}
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.eslint.setup{}
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+require'lspconfig'.phpactor.setup{}
 
 local nvim_lsp = require 'lspconfig'
   local on_attach = function(_, bufnr)
@@ -463,6 +541,9 @@ end
 
 return M
 EOF
+"}}}
+
+" CMP{{{
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -546,7 +627,13 @@ lua <<EOF
   require('lspconfig')['eslint'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['phpactor'].setup {
+    capabilities = capabilities
+  }
 EOF
+"}}}
+
+" TROUBLE{{{
 lua << EOF
   require("trouble").setup {
     position = "bottom", -- position of the list can be: bottom, top, left, right
@@ -596,3 +683,10 @@ lua << EOF
     use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
   }
 EOF
+"}}}
+
+" PICGO{{{
+lua << EOF
+require("nvim-picgo").setup()
+EOF
+"}}}
