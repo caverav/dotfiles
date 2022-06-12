@@ -451,12 +451,31 @@ globalkeys = my_table.join(
     --    {description = "Xlunch app launcher", group = "altkey"}),
 
     -- screenshots
-    awful.key({ }, "Print", function () awful.util.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'") end,
-        {description = "Scrot", group = "screenshots"}),
-    awful.key({ modkey1           }, "Print", function () awful.util.spawn( "xfce4-screenshooter" ) end,
-        {description = "Xfce screenshot", group = "screenshots"}),
-    awful.key({ modkey1, "Shift"  }, "Print", function() awful.util.spawn("gnome-screenshot -i") end,
-        {description = "Gnome screenshot", group = "screenshots"}),
+    awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn( "scrot -s -e 'xclip -selection clipboard -t image/png -i $f' /tmp/scrot/ && notify-send 'Captura' 'Captura guardada al portapapeles' " ) end,
+        {description = "section clipboard", group = "screenshots"}),
+    awful.key({ modkey, "Shift" }, "s", function () awful.util.spawn( "notify-send 'Captura' 'Seleccionando captura para copiar al portapapeles' " ) end,
+        {description = "section clipboard", group = "screenshots"}),
+
+    awful.key({ modkey, modkey1 }, "s", function () awful.util.spawn( "scrot -s ~/Imágenes/%b%d::%H%M%S.png && notify-send 'Captura' 'Captura guardada en Imágenes' " ) end,
+        {description = "section save", group = "screenshots"}),
+    awful.key({ modkey, modkey1 }, "s", function () awful.util.spawn( "notify-send 'Captura' 'Captura guardada en Imágenes' " ) end,
+        {description = "section save", group = "screenshots"}),
+
+    awful.key({ }, "Print", function () awful.util.spawn( "scrot ~/Imágenes/%b%d::%H%M%S.png && notify-send 'Captura' 'Captura guardada en Imágenes' " ) end,
+        {description = "full save", group = "screenshots"}),
+    awful.key({ }, "Print", function () awful.util.spawn( "notify-send 'Captura' 'Captura guardada en Imágenes' " ) end,
+        {description = "full save", group = "screenshots"}),
+
+    awful.key({ modkey, "Shift" }, "Print", function () awful.util.spawn( "scrot -e 'xclip -selection clipboard -t image/png -i $f' /tmp/scrot/ && notify-send 'Captura' 'Captura guardada al portapapeles' " ) end,
+        {description = "full clipboard", group = "screenshots"}),
+    awful.key({ modkey, "Shift" }, "Print", function () awful.util.spawn( "notify-send 'Captura' 'Captura guardada al portapapeles' " ) end,
+        {description = "full clipboard", group = "screenshots"}),
+    -- awful.key({ }, "Print", function () awful.util.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'") end,
+    --     {description = "Scrot", group = "screenshots"}),
+    -- awful.key({ modkey1           }, "Print", function () awful.util.spawn( "xfce4-screenshooter" ) end,
+    --     {description = "Xfce screenshot", group = "screenshots"}),
+    -- awful.key({ modkey1, "Shift"  }, "Print", function() awful.util.spawn("gnome-screenshot -i") end,
+        -- {description = "Gnome screenshot", group = "screenshots"}),
 
     -- Personal keybindings}}}
 

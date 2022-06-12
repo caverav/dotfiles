@@ -57,8 +57,8 @@ let g:vimwiki_list = [ {'syntax': 'markdown', 'ext': '.md'} ]
 
 " presence vars{{{
 let g:presence_neovim_image_text   = "q andai sapeando forg"
-let g:presence_enable_line_number  = 1
-let g:presence_line_number_text    = "Línea %s de %s"
+" let g:presence_enable_line_number  = 1
+" let g:presence_line_number_text    = "Línea %s de %s"
 let g:presence_editing_text        = "Editando %s"
 let g:presence_file_explorer_text  = "Navegando %s"
 let g:presence_git_commit_text     = "Committing changes"
