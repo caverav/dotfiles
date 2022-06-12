@@ -17,5 +17,4 @@ export SSH_AUTH_SOCK
 /usr/bin/picom &
 export _JAVA_AWT_WM_NONREPARENTING=1 # para no reparentar las ventanas de Java (tiene problemas con dwm)
 /usr/bin/sct 4500
-am-conky-session
 # exec dwm
