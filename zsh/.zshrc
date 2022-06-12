@@ -364,3 +364,10 @@ eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 eval $(thefuck --alias)
+
+# bun completions
+[ -s "/home/camilo/.bun/_bun" ] && source "/home/camilo/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/home/camilo/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

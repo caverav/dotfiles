@@ -56,7 +56,8 @@ let g:vimwiki_list = [ {'syntax': 'markdown', 'ext': '.md'} ]
 "}}}
 
 " presence vars{{{
-" let g:presence_enable_line_number  = 1
+let g:presence_neovim_image_text   = "q andai sapeando forg"
+let g:presence_enable_line_number  = 1
 let g:presence_line_number_text    = "Línea %s de %s"
 let g:presence_editing_text        = "Editando %s"
 let g:presence_file_explorer_text  = "Navegando %s"
@@ -64,6 +65,7 @@ let g:presence_git_commit_text     = "Committing changes"
 let g:presence_plugin_manager_text = "Managing plugins"
 let g:presence_reading_text        = "Leyendo %s"
 let g:presence_workspace_text      = "Trabajando en %s"
+
 "}}}
 
 " Plugs{{{
@@ -238,7 +240,7 @@ nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kk
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
 nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
-nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>
+nnoremap <silent><leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
 
 " trouble
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
@@ -496,6 +498,8 @@ require'lspconfig'.solargraph.setup{}
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.eslint.setup{}
 require'lspconfig'.phpactor.setup{}
+require'lspconfig'.svlangserver.setup{}
+require'lspconfig'.asm_lsp.setup{}
 
 local nvim_lsp = require 'lspconfig'
   local on_attach = function(_, bufnr)
