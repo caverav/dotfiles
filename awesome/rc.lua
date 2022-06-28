@@ -709,6 +709,8 @@ globalkeys = my_table.join(
             os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
         end),
+    awful.key({ }, "XF86AudioMicMute", function () os.execute("amixer set Capture toggle") end,
+              {description = "-10%", group = "hotkeys"}),
     awful.key({ modkey1, "Shift" }, "m",
         function ()
             os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))

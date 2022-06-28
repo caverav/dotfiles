@@ -261,6 +261,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias diff='diff --color=auto'
     alias ip='ip --color=auto'
 
+    alias k='kubecolor'
+
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
@@ -371,3 +373,16 @@ eval $(thefuck --alias)
 # Bun
 export BUN_INSTALL="/home/camilo/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export TERM=xterm
+source ~/.zplug/init.zsh
+zplug "dekobon/zsh-kubecolor-completion"
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose

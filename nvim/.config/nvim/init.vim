@@ -50,7 +50,7 @@ let g:ale_fix_on_save = 1
 let g:tex_flavor  = 'latex'
 let g:tex_conceal = ''
 let g:vimtex_fold_manual = 1
-let g:vimtex_latexmk_continuous = 1
+" let g:vimtex_latexmk_continuous = 1
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimwiki_list = [ {'syntax': 'markdown', 'ext': '.md'} ]
 "}}}
@@ -112,7 +112,7 @@ Plug 'matze/vim-tex-fold'
 Plug 'is0n/jaq-nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kosayoda/nvim-lightbulb'
-" Plug 'chipsenkbeil/distant.nvim'
+Plug 'chipsenkbeil/distant.nvim'
 Plug 'tpope/vim-rails'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
@@ -500,6 +500,17 @@ require'lspconfig'.eslint.setup{}
 require'lspconfig'.phpactor.setup{}
 require'lspconfig'.svlangserver.setup{}
 require'lspconfig'.asm_lsp.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.intelephense.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.ltex.setup{
+    settings = {
+        ltex = {
+            language = 'es'
+        }
+    }
+}
 
 local nvim_lsp = require 'lspconfig'
   local on_attach = function(_, bufnr)
@@ -544,8 +555,10 @@ function M.code_action_listener()
 end
 
 return M
+
 EOF
-"}}}
+
+" }}}
 
 " CMP{{{
 lua <<EOF
@@ -634,6 +647,21 @@ lua <<EOF
   require('lspconfig')['phpactor'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['ltex'].setup{
+    capabilities = capabilities
+  }
+  require('lspconfig')['html'].setup{
+    capabilities = capabilities
+  }
+  require('lspconfig')['bashls'].setup{
+    capabilities = capabilities
+  }
+  require('lspconfig')['intelephense'].setup{
+    capabilities = capabilities
+  }
+  require('lspconfig')['vimls'].setup{
+    capabilities = capabilities
+  }
 EOF
 "}}}
 
@@ -694,3 +722,12 @@ lua << EOF
 require("nvim-picgo").setup()
 EOF
 "}}}
+
+" DISTANT{{{
+lua << EOF
+require('distant').setup{
+  ['*'] = require('distant.settings').chip_default()
+}
+EOF
+" }}}
+
