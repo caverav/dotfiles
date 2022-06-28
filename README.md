@@ -29,7 +29,7 @@ Este repositorio git contiene las configuraciones que considero importantes que 
     2\) Copiar manualmente los archivos:
     
     ```bash
-    cp kitty/.config/kitty ~/.config/kitty && cp compton/.config/.compton ~/.config/kitty && cp nvim/.config/nvim ~/.config/nvim && cp vim/.vimrc ~/.vimrc && cp bashrc/.bashrc ~/.bashrc
+    cp kitty/.config/<config> ~/.config/<config>
     ```
     
     
