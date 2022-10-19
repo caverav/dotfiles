@@ -373,7 +373,8 @@ eval $(thefuck --alias)
 # Bun
 export BUN_INSTALL="/home/camilo/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export TERM=xterm
+export TERM=xterm-256color
+export EDITOR=nvim
 source ~/.zplug/init.zsh
 zplug "dekobon/zsh-kubecolor-completion"
 # Install plugins if there are plugins that have not been installed
@@ -385,4 +386,4 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load

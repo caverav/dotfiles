@@ -1,6 +1,7 @@
 " vim:foldmethod=marker
 " INITIAL SETS{{{
 set nocompatible
+set mouse+=a
 filetype plugin on
 syntax on
 " }}}
@@ -31,6 +32,7 @@ set cmdheight=2
 set updatetime=50
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+set signcolumn=yes
 "set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 "}}}
@@ -95,7 +97,7 @@ Plug 'tpope/vim-commentary'
 Plug 'andweeb/presence.nvim'
 Plug 'Townk/vim-autoclose'
 Plug 'phanviet/vim-monokai-pro'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 Plug 'flazz/vim-colorschemes'
 Plug 'edluffy/specs.nvim'
 Plug 'ryanoasis/vim-devicons'
@@ -131,6 +133,7 @@ Plug 'tpope/vim-repeat'
 Plug 'ggandor/lightspeed.nvim' " For moving in screen
 Plug 'windwp/nvim-ts-autotag'
 Plug 'askfiy/nvim-picgo'
+Plug 'puremourning/vimspector'
 " md
 Plug 'Iron-E/nvim-libmodal'
 Plug 'Iron-E/nvim-marktext'
@@ -143,12 +146,15 @@ Plug 'nvim-telescope/telescope-media-files.nvim'
 " Themes
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
+Plug 'rakr/vim-one'
 
-
+" Plug 'adelarsq/neoline.vim'
+Plug 'romgrk/barbar.nvim'
+" Plug 'nvim-lualine/lualine.nvim'
+Plug 'glepnir/spaceline.vim'
 
 call plug#end()
 "}}}
-
 lua << EOF
 require('nvim-ts-autotag').setup()
 vim.api.nvim_set_keymap("n", "<leader>ns", ":lua require('package-info').show()<CR>", { silent = true, noremap = true })
@@ -161,6 +167,7 @@ vim.api.nvim_set_keymap(
 EOF
 
 let g:deoplete#enable_at_startup = 1
+let g:vimspector_enable_mappings = 'HUMAN'
 
 " --- vim go (polyglot) settings.{{{
 let g:go_highlight_build_constraints = 1
@@ -239,7 +246,7 @@ nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kk
 " LSPSAGA
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
 vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
-nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
+" nnoremap <silent><leader> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
 nnoremap <silent><leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
 
 " trouble
@@ -250,9 +257,9 @@ nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-vnoremap X "_d
+" vnoremap J :m '>+1<CR>gv=gv
+" vnoremap K :m '<-2<CR>gv=gv
+" vnoremap X "_d
 inoremap <C-c> <esc>
 nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
 function! s:check_back_space() abort
@@ -292,8 +299,8 @@ fun! TrimWhitespace()
 endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
-autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F5>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python imap <buffer> <F5>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
 nmap s <Plug>Lightspeed_omni_s
 "}}}
@@ -326,7 +333,7 @@ lua << EOF
 require('vgit').setup({
 settings ={
 live_gutter = {
-      enabled = false,
+      enabled = true,
       edge_navigation = true, -- This allows users to navigate within a hunk
     },
   },
@@ -504,13 +511,10 @@ require'lspconfig'.html.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.intelephense.setup{}
 require'lspconfig'.vimls.setup{}
-require'lspconfig'.ltex.setup{
-    settings = {
-        ltex = {
-            language = 'es'
-        }
-    }
-}
+require'lspconfig'.ltex.setup{}
+require'lspconfig'.sourcery.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.stylelint_lsp.setup{}
 
 local nvim_lsp = require 'lspconfig'
   local on_attach = function(_, bufnr)
@@ -527,7 +531,7 @@ local nvim_lsp = require 'lspconfig'
     local opts = { noremap = true, silent = true }
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -535,7 +539,7 @@ local nvim_lsp = require 'lspconfig'
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -662,6 +666,15 @@ lua <<EOF
   require('lspconfig')['vimls'].setup{
     capabilities = capabilities
   }
+  require('lspconfig')['sourcery'].setup{
+    capabilities = capabilities
+  }
+  require('lspconfig')['tsserver'].setup{
+    capabilities = capabilities
+  }
+  require('lspconfig')['stylelint_lsp'].setup{
+    capabilities = capabilities
+  }
 EOF
 "}}}
 
@@ -690,7 +703,7 @@ lua << EOF
         jump_close = {"o"}, -- jump to the diagnostic and close the list
         toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
         toggle_preview = "P", -- toggle auto_preview
-        hover = "K", -- opens a small popup with the full multiline message
+        --hover = "K", -- opens a small popup with the full multiline message
         preview = "p", -- preview the diagnostic location
         close_folds = {"zM", "zm"}, -- close all folds
         open_folds = {"zR", "zr"}, -- open all folds
@@ -731,3 +744,132 @@ require('distant').setup{
 EOF
 " }}}
 
+" LSPSAGA{{{
+lua << EOF
+vim.keymap.set("n", "gh", "<cmd>Lspsaga preview_definition<CR>", { silent = true,noremap = true})
+vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+
+local action = require("lspsaga.action")
+-- scroll down hover doc or scroll in definition preview
+vim.keymap.set("n", "<C-f>", function()
+    action.smart_scroll_with_saga(1)
+end, { silent = true })
+-- scroll up hover doc
+vim.keymap.set("n", "<C-b>", function()
+    action.smart_scroll_with_saga(-1)
+end, { silent = true })
+
+vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, { silent = true,noremap = true})
+EOF
+"}}}
+
+"BARBAR{{{
+" Move to previous/next
+nnoremap <silent>    <A-,> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <A-.> <Cmd>BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    <A-<> <Cmd>BufferMovePrevious<CR>
+nnoremap <silent>    <A->> <Cmd>BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
+nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
+nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
+nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
+nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
+nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
+" Pin/unpin buffer
+nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
+" Close buffer
+nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout
+" Close commands
+"                          :BufferCloseAllButCurrent
+"                          :BufferCloseAllButPinned
+"                          :BufferCloseAllButCurrentOrPinned
+"                          :BufferCloseBuffersLeft
+"                          :BufferCloseBuffersRight
+" Magic buffer-picking mode
+nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
+" Sort automatically by...
+nnoremap <silent> <Space>bb <Cmd>BufferOrderByBufferNumber<CR>
+nnoremap <silent> <Space>bd <Cmd>BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl <Cmd>BufferOrderByLanguage<CR>
+nnoremap <silent> <Space>bw <Cmd>BufferOrderByWindowNumber<CR>
+
+" Other:
+" :BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
+"}}}
+
+"LUALINE{{{
+lua << END
+-- local colors = {
+--  blue = '#80a0ff',
+--  cyan = '#79dac8',
+--  black = '#080808',
+--  white = '#c6c6c6',
+--  red = '#ff5189',
+--  violet = '#d183e8',
+--  grey = '#303030',
+-- }
+--
+-- local bubbles_theme = {
+--  normal = {
+--  a = { fg = colors.black, bg = colors.violet },
+--  b = { fg = colors.white, bg = colors.grey },
+--  c = { fg = colors.black, bg = colors.black },
+--  },
+--
+--  insert = { a = { fg = colors.black, bg = colors.blue } },
+--  visual = { a = { fg = colors.black, bg = colors.cyan } },
+--  replace = { a = { fg = colors.black, bg = colors.red } },
+--
+--  inactive = {
+--  a = { fg = colors.white, bg = colors.black },
+--  b = { fg = colors.white, bg = colors.black },
+--  c = { fg = colors.black, bg = colors.black },
+--  },
+-- }
+--
+-- require('lualine').setup {
+--  options = {
+--  theme = bubbles_theme,
+--  component_separators = '|',
+--  section_separators = { left = '', right = '' },
+--  },
+--  sections = {
+--  lualine_a = {
+--  { 'mode', separator = { left = '' }, right_padding = 2 },
+--  },
+--  lualine_b = { 'filename', 'branch', 'diff' },
+--  lualine_c = { 'fileformat' },
+--  lualine_x = {},
+--  lualine_y = { 'encoding', 'fileformat', 'filetype', 'progress' },
+--  lualine_z = {
+--  { 'location', separator = { right = '' }, left_padding = 2 },
+--  },
+--  },
+--  inactive_sections = {
+--  lualine_a = { 'filename' },
+--  lualine_b = {},
+--  lualine_c = {},
+--  lualine_x = {},
+--  lualine_y = {},
+--  lualine_z = { 'location' },
+--  },
+--  tabline = {},
+--  extensions = {},
+-- }
+END
+"}}}
+
+"SPACELINE{{{
+let g:spaceline_colorscheme = 'dracula'
+let g:spaceline_seperate_style = 'arrow-fade'
+let g:spaceline_diagnostic_tool = 'nvim_lsp'
+"}}}

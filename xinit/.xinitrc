@@ -11,10 +11,13 @@ fi
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
-/usr/bin/bash /home/camilo/dwm-camilo/dwmbar &
+# /usr/bin/bash /home/camilo/dwm-camilo/dwmbar &
 /bin/mkdir /tmp/scrot
 /home/camilo/.fehbg &
-/usr/bin/picom &
+# /usr/bin/picom &
 export _JAVA_AWT_WM_NONREPARENTING=1 # para no reparentar las ventanas de Java (tiene problemas con dwm)
 /usr/bin/sct 4500
+nm-applet &
+flameshot &
+# exec bspwm
 # exec dwm
