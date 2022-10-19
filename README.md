@@ -29,7 +29,7 @@ Este repositorio git contiene las configuraciones que considero importantes que 
     2\) Copiar manualmente los archivos:
     
     ```bash
-    cp kitty/.config/<config> ~/.config/<config>
+    cp <config>/.config/<config> ~/.config/<config>
     ```
     
     
