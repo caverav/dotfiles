@@ -467,4 +467,9 @@ return {
 	["AndrewRadev/tagalong.vim"] = {},
 	["AndrewRadev/switch.vim"] = {},
 	["vim-ruby/vim-ruby"] = {},
+
+	["williamboman/mason-lspconfig.nvim"] = {},
+
+	-- WebDev
+	["MunifTanjim/prettier.nvim"] = {},
 }
