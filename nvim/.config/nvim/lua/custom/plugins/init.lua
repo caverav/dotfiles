@@ -462,4 +462,8 @@ return {
 	["lervag/vimtex"] = {},
 	["ggandor/lightspeed.nvim"] = {},
 	["is0n/jaq-nvim"] = {},
+	-- Rails
+	["AndrewRadev/splitjoin.vim"] = {},
+	["AndrewRadev/tagalong.vim"] = {},
+	["vim-ruby/vim-ruby"] = {},
 }
