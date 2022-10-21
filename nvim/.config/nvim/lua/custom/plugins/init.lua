@@ -465,5 +465,6 @@ return {
 	-- Rails
 	["AndrewRadev/splitjoin.vim"] = {},
 	["AndrewRadev/tagalong.vim"] = {},
+	["AndrewRadev/switch.vim"] = {},
 	["vim-ruby/vim-ruby"] = {},
 }
