@@ -387,3 +387,4 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+source /usr/share/nvm/init-nvm.sh

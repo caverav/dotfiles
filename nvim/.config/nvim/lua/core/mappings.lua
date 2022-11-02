@@ -36,7 +36,7 @@ M.general = {
 
 		-- line numbers
 		["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
-		["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
+		["<leader>ra"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
 
 		-- update nvchad
 		["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
@@ -178,7 +178,7 @@ M.lspconfig = {
 			"lsp definition type",
 		},
 
-		["<leader>ra"] = {
+		["<leader>rn"] = {
 			function()
 				require("nvchad_ui.renamer").open()
 			end,
