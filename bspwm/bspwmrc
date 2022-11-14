@@ -58,7 +58,7 @@ bspc rule -r *:*
 # 2 > Browser
 declare -a browsers=(Chromium Edge Microsoft-edge edge firefox Google-chrome Firefox firefox)
 for i in ${browsers[@]}; do
-	bspc rule -a $i desktop='^4' follow=on focus=on
+	bspc rule -a $i desktop='^2' follow=on focus=on
 done
 
 # 3 > code
