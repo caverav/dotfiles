@@ -1,8 +1,8 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-source ~/git/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/git/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/dotfiles/zsh/pinyin-comp.zsh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -228,53 +228,53 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='lsd --group-dirs=first'
     alias cat='bat'
     alias catnl='/usr/bin/cat'
-
-    alias nano='nano -x -O'
-    alias dirsearch='sudo dirsearch'
-    # alias android-studio='sh /home/camilo/androidstud/android-studio/bin/studio.sh'
-    alias apagao='sudo shutdown now'
-    alias camilofvv='ssh camilofvv@camilo.fvv.cl'
-    alias cat=bat
-    alias cyberchef='firefox /home/camilo/Descargas/CyberChef/CyberChef_v9.27.6.html'
-    alias d=ranger
-    alias edex='/home/camilo/Descargas/eDEX-UI-Linux-x86_64.AppImage --no-sandbox'
-    alias egrep='egrep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias gadd='git add .'
-    alias gcommit='git commit -m '
-    alias gpush='xclip -sel clip /home/camilo/authgit && git push && echo 1 | xclip -sel clip'
-    alias grep='grep --color=auto'
-    alias hola='bash .xinitrc & exit & xkill'
-    alias ip='ip -c'
-    #alias ll='ls -lah'
-    #alias ls='ls --color=auto'
-    alias osu='wine /home/camilo/.wine/drive_c/users/camilo/Local\ Settings/Application\ Data/osu\!/osu\!.exe'
-    alias py=python3
-    alias speedtest=/home/camilo/C/ookla-speedtest-1.0.0-x86_64-linux/speedtest
-    alias truful='ssh -p 13541 cvera@truful.newtenberg.com'
-    alias v=nvim
-    alias which-command=whence
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias diff='diff --color=auto'
-    alias ip='ip --color=auto'
-
-    alias k='kubecolor'
-
-    export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-    export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-    export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-    export LESS_TERMCAP_so=$'\E[01;33m'    # begin reverse video
-    export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-    export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-    export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-
-    # Take advantage of $LS_COLORS for completion as well
-    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-    zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 fi
+
+alias nano='nano -x -O'
+alias dirsearch='sudo dirsearch'
+# alias android-studio='sh /home/camilo/androidstud/android-studio/bin/studio.sh'
+alias apagao='sudo shutdown now'
+alias camilofvv='ssh camilofvv@camilo.fvv.cl'
+alias cat=bat
+alias cyberchef='firefox /home/camilo/Descargas/CyberChef/CyberChef_v9.27.6.html'
+alias d=ranger
+alias edex='/home/camilo/Descargas/eDEX-UI-Linux-x86_64.AppImage --no-sandbox'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias gadd='git add .'
+alias gcommit='git commit -m '
+alias gpush='xclip -sel clip /home/camilo/authgit && git push && echo 1 | xclip -sel clip'
+alias grep='grep --color=auto'
+alias hola='bash .xinitrc & exit & xkill'
+alias ip='ip -c'
+#alias ll='ls -lah'
+#alias ls='ls --color=auto'
+alias osu='wine /home/camilo/.wine/drive_c/users/camilo/Local\ Settings/Application\ Data/osu\!/osu\!.exe'
+alias py=python3
+alias speedtest=/home/camilo/C/ookla-speedtest-1.0.0-x86_64-linux/speedtest
+alias truful='ssh -p 13541 cvera@truful.newtenberg.com'
+alias v=nvim
+alias which-command=whence
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
+
+alias k='kubecolor'
+
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;33m'    # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+
+# Take advantage of $LS_COLORS for completion as well
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 # some more ls aliases
 #alias ll='ls -l'
@@ -282,6 +282,32 @@ fi
 #alias l='ls -CF'
 
 # Funciones
+
+# Select a docker container to start and attach to
+function da() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+# Select a running docker container to stop
+function ds() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
+# Select a docker container to remove
+function drm() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker rm "$cid"
+}
+# Select a docker image or images to remove
+function drmi() {
+  docker images | sed 1d | fzf -q "$1" --no-sort -m --tac | awk '{ print $3 }' | xargs -r docker rmi
+}
 
 function mkt(){
 	mkdir {nmap,content,exploits,scripts}
@@ -359,13 +385,13 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 path+=/home/camilo/.local/bin/
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-eval $(thefuck --alias)
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"
+# eval $(thefuck --alias)
 
 # bun completions
 [ -s "/home/camilo/.bun/_bun" ] && source "/home/camilo/.bun/_bun"
@@ -375,9 +401,25 @@ export BUN_INSTALL="/home/camilo/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export TERM=xterm-256color
 export EDITOR=nvim
+
+
 source ~/.zplug/init.zsh
 zplug "dekobon/zsh-kubecolor-completion"
+zplug "unixorn/fzf-zsh-plugin"
+zplug "Aloxaf/fzf-tab"
+zplug "Freed-Wu/fzf-tab-source"
 # Install plugins if there are plugins that have not been installed
+export FZF_PREVIEW_ADVANCED=true
+# export FZF_PREVIEW_WINDOW='right:45%:nohidden'
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -388,3 +430,9 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 source /usr/share/nvm/init-nvm.sh
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/dotfiles/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.p10k.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

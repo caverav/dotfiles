@@ -102,7 +102,7 @@ XF86AudioMicMute
 
 # Close App
 super + {_,shift + }c
-	bspc node -{c,k}
+	bspc node -{k,c}
 
 # Reload Keybindings
 super + Escape

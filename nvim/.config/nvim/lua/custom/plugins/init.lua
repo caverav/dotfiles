@@ -472,4 +472,11 @@ return {
 
 	-- WebDev
 	["MunifTanjim/prettier.nvim"] = {},
+	--Debugging
+	["mfussenegger/nvim-dap"] = {},
+	["rcarriga/nvim-dap-ui"] = {
+		config = function()
+			require("custom.plugins.dapui")
+		end,
+	},
 }
