@@ -479,4 +479,14 @@ return {
 			require("custom.plugins.dapui")
 		end,
 	},
+	["vuki656/package-info.nvim"] = {
+		requires = {
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			require("custom.plugins.pinfo")
+		end,
+	},
+	["udalov/kotlin-vim"] = {},
+	-- requires = ""
 }

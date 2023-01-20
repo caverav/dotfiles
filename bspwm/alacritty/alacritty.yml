@@ -3,9 +3,14 @@ import:
   - ~/.config/bspwm/alacritty/colors.yml
   - ~/.config/bspwm/alacritty/fonts.yml
 ## Set environment variables
+font:
+  normal:
+    family: Ubuntu Mono Nerd Font
+    style: Regular
+    size: 18
 env:
   TERM: alacritty
-  WINIT_X11_SCALE_FACTOR: '1.0'
+  WINIT_X11_SCALE_FACTOR: "1.5"
 ## Terminal window settings
 window:
   dimensions:
@@ -15,13 +20,13 @@ window:
   padding:
     x: 10
     y: 10
-  decorations: full 
+  decorations: full
   startup_mode: Windowed
   dynamic_title: true
   history: 10000
   multiplier: 3
-  opacity: 0.5 
-  background_opacity : 0.5
+  opacity: 0.5
+  background_opacity: 0.5
 # Cursor
 cursor:
   style:
