@@ -158,4 +158,11 @@ M.PreventArrow = {
 	},
 }
 
+M.copilot = {
+	n = {
+		["<leader>ce"] = { "<cmd>Copilot enable<CR>", "Enable Copilot" },
+		["<leader>cd"] = { "<cmd>Copilot disable<CR>", "Disable Copilot" },
+	},
+}
+
 return M

@@ -31,7 +31,7 @@ workspaces() {
 workspaces
 
 bspc config border_width 0
-bspc config window_gap 50
+bspc config window_gap 20
 bspc config split_ratio 0.50
 
 bspc config focused_border_color "$BLUE"
@@ -73,6 +73,8 @@ for i in ${files[@]}; do
 	bspc rule -a $i desktop='^5' follow=on focus=on
 done
 
+bspc rule -a Zathura state=tiled
+
 ## Autostart -------------------------------------------------#
 
 # Kill if already running
@@ -95,6 +97,12 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 
 # Enable power management
 xfce4-power-manager &
+
+# nm-applet
+nm-applet &
+
+# flameshot
+flameshot &
 
 # Fix cursor
 xsetroot -cursor_name left_ptr

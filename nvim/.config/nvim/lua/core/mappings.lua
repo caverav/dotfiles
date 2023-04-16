@@ -282,6 +282,9 @@ M.telescope = {
 		["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "find oldfiles" },
 		["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "show keys" },
 
+		-- neorg
+		["<leader>fn"] = { "<cmd> Telescope neorg switch_workspace <CR>", "neorg switch workspace" },
+
 		-- git
 		["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
 		["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "git status" },

@@ -3,7 +3,6 @@ local overrides = require("custom.plugins.overrides")
 return {
 
 	----------------------------------------- default plugins ------------------------------------------
-	--
 	["NvChad/ui"] = {
 		after = "base46",
 		module = "nvchad_ui",
@@ -22,16 +21,11 @@ return {
 	},
 
 	["nvim-telescope/telescope.nvim"] = {
+		module = "telescope",
 		override_options = overrides.telescope,
 	},
 	["NvChad/nvterm"] = {
 		override_options = overrides.nvterm,
-	},
-	["neovim/nvim-lspconfig"] = {
-		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.plugins.lspconfig")
-		end,
 	},
 
 	-- override default configs
@@ -47,6 +41,11 @@ return {
 		override_options = overrides.mason,
 	},
 
+	["williamboman/mason-lspconfig.nvim"] = {
+		config = function()
+			require("custom.plugins.mason-lspconfig")
+		end,
+	},
 	--------------------------------------------- custom plugins ----------------------------------------------
 	-- autoclose tags in html, jsx only
 	["windwp/nvim-ts-autotag"] = {
@@ -109,15 +108,17 @@ return {
 
 	-- notes & todo stuff
 	["nvim-neorg/neorg"] = {
-		tag = "0.0.12",
-		ft = "norg",
-		after = "nvim-treesitter",
+		-- after treesitter and telescope
+		after = { "nvim-treesitter", "telescope.nvim" },
+		-- after = "nvim-treesitter",
 		setup = function()
 			require("custom.plugins.neorg").autocmd()
 		end,
 		config = function()
 			require("custom.plugins.neorg").setup()
 		end,
+		run = ":Neorg sync-parsers",
+		requires = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
 	},
 
 	-- basic diagrams for flow charts etc
@@ -468,8 +469,12 @@ return {
 	["AndrewRadev/switch.vim"] = {},
 	["vim-ruby/vim-ruby"] = {},
 
-	["williamboman/mason-lspconfig.nvim"] = {},
-
+	["neovim/nvim-lspconfig"] = {
+		config = function()
+			require("plugins.configs.lspconfig")
+			require("custom.plugins.lspconfig")
+		end,
+	},
 	-- WebDev
 	["MunifTanjim/prettier.nvim"] = {},
 	--Debugging
@@ -488,5 +493,17 @@ return {
 		end,
 	},
 	["udalov/kotlin-vim"] = {},
-	-- requires = ""
+	["jose-elias-alvarez/typescript.nvim"] = {},
+	["JoosepAlviste/nvim-ts-context-commentstring"] = {},
+	["MaximilianLloyd/ascii.nvim"] = {
+		requires = "MunifTanjim/nui.nvim",
+	},
+	["jbyuki/nabla.nvim"] = {},
+	["iamcco/markdown-preview.nvim"] = {
+		run = "cd app && yarn install",
+		ft = "markdown",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+	},
 }

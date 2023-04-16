@@ -1,7 +1,9 @@
 vim.g.airline_powerline_fonts = 1
 vim.g.neovide_cursor_antialiasing = true
-vim.g.neovide_transparency = 0.2
+vim.g.neovide_transparency = 0.5
 vim.g.neovide_no_idle = true
+vim.g.neovide_floating_blur_amount_x = 9.0
+vim.g.neovide_floating_blur_amount_y = 9.0
 vim.g.neovide_cursor_vfx_particle_density = 10.0
 vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_confirm_quit = true

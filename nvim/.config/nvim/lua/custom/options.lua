@@ -37,3 +37,5 @@ global.neovide_cursor_animation_length = 0.13
 global.neovide_cursor_vfx_particle_density = 10.0
 global.neovide_hide_mouse_when_typing = true
 global.neovide_confirm_quit = true
+global.copilot_filetypes = { ("*"): v:true }
+

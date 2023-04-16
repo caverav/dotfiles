@@ -7,6 +7,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/.secrets.zsh
+
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
@@ -244,6 +246,8 @@ alias fgrep='fgrep --color=auto'
 alias gadd='git add .'
 alias gcommit='git commit -m '
 alias gpush='xclip -sel clip /home/camilo/authgit && git push && echo 1 | xclip -sel clip'
+# alias vpnusm='sudo openfortivpn vpn.usm.cl:443 -u camilo.verav --trusted-cert 950d71689babb942fb2f1b0d166bae361309069f74e67db6cf79e14d88437eff -p $(bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password')'
+alias vpnusm="bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password' | sed 's/^\"//' | sed 's/\"$//' | xclip -sel clip && sudo openfortivpn vpn.usm.cl:443 -u camilo.verav --trusted-cert 950d71689babb942fb2f1b0d166bae361309069f74e67db6cf79e14d88437eff; echo 1 | xclip -sel clip"
 alias grep='grep --color=auto'
 alias hola='bash .xinitrc & exit & xkill'
 alias ip='ip -c'
@@ -263,6 +267,7 @@ alias diff='diff --color=auto'
 alias ip='ip --color=auto'
 
 alias k='kubecolor'
+alias nv='env -u WAYLAND_DISPLAY neovide'
 
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
@@ -385,13 +390,13 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 path+=/home/camilo/.local/bin/
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="$HOME/.sdkman"
-# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 # export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-# export PATH="$HOME/.cargo/bin:$PATH"
-# eval $(thefuck --alias)
+export PATH="$HOME/.cargo/bin:$PATH"
+eval $(thefuck --alias)
 
 # bun completions
 [ -s "/home/camilo/.bun/_bun" ] && source "/home/camilo/.bun/_bun"
@@ -436,3 +441,4 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+

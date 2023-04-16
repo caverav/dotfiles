@@ -1,15 +1,20 @@
 ## Import files (Colors, Fonts, Etc)
 import:
-  - ~/.config/bspwm/alacritty/colors.yml
+  # uncomment the flavour you want below:
+  #  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
+  #  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
+  #  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
+  # - ~/.config/bspwm/alacritty/colors.yml
   - ~/.config/bspwm/alacritty/fonts.yml
+  - ~/.config/bspwm/alacritty/catppuccin/catppuccin-mocha.yml
 ## Set environment variables
 font:
   normal:
-    family: Ubuntu Mono Nerd Font
+    family: monospace
     style: Regular
     size: 18
 env:
-  TERM: alacritty
+  TERM: xterm-256color
   WINIT_X11_SCALE_FACTOR: "1.5"
 ## Terminal window settings
 window:
@@ -25,7 +30,7 @@ window:
   dynamic_title: true
   history: 10000
   multiplier: 3
-  opacity: 0.5
+  opacity: 0.7
   background_opacity: 0.5
 # Cursor
 cursor:
