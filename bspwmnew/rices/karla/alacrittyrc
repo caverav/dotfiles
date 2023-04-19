@@ -32,35 +32,35 @@ font:
 
   size: 10
 
-# Colors (Rose-Pine Moon) Cristina Rice
+# Colors () Karla Rice
 colors:
   primary:
-    background: '#1f1d29'
-    foreground: '#eaeaea'
+    background: '#e1eaff'
+    foreground: '#2d2e33'
 
   normal:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#eabbb9'
-    white:   '#faebd7'
+    black:   '#020816'
+    red:     '#ff004a'
+    green:   '#1bce5f'
+    yellow:  '#ffcb00'
+    blue:    '#0864f1'
+    magenta: '#b93fe0'
+    cyan:    '#17bcef'
+    white:   '#9da6ba'
 
   bright:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
+    black:   '#7d829e'
+    red:     '#e74f62'
+    green:   '#57e28a'
+    yellow:  '#fcde68'
+    blue:    '#3d7fea'
+    magenta: '#da80f4'
+    cyan:    '#74cbe7'
+    white:   '#7d829e'
     
   cursor:
-    cursor: '#c3a5e6'
-    text:	'#1f1d29'
+    cursor: '#0864f1'
+    text:	'#e1eaff'
 
 selection:
   save_to_clipboard: false

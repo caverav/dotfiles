@@ -32,35 +32,35 @@ font:
 
   size: 10
 
-# Colors (Rose-Pine Moon) Cristina Rice
+# Colors (Nord) Melissa Rice
 colors:
   primary:
-    background: '#1f1d29'
-    foreground: '#eaeaea'
+    background: '#2e3440'
+    foreground: '#d8dee9'
 
   normal:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#eabbb9'
-    white:   '#faebd7'
+    black:   '#4c566a'
+    red:     '#bf616a'
+    green:   '#a3be8c'
+    yellow:  '#ebcb8b'
+    blue:    '#81a1c1'
+    magenta: '#b48ead'
+    cyan:    '#88c0d0'
+    white:   '#e5e9f0'
 
   bright:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
+    black:   '#4c566a'
+    red:     '#bf616a'
+    green:   '#a3be8c'
+    yellow:  '#ebcb8b'
+    blue:    '#81a1c1'
+    magenta: '#b48ead'
+    cyan:    '#8fbcbb'
+    white:   '#eceff4'
     
   cursor:
-    cursor: '#c3a5e6'
-    text:	'#1f1d29'
+    cursor: '#81a1c1'
+    text:	'#2e3440'
 
 selection:
   save_to_clipboard: false

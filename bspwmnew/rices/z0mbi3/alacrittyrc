@@ -32,35 +32,35 @@ font:
 
   size: 10
 
-# Colors (Rose-Pine Moon) Cristina Rice
+# Colors (Decay, decayce variant) z0mbi3 Rice
 colors:
   primary:
-    background: '#1f1d29'
-    foreground: '#eaeaea'
+    background: '#0d0f18'
+    foreground: '#a5b6cf'
 
   normal:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#eabbb9'
-    white:   '#faebd7'
+    black:   '#3d414f'
+    red:     '#dd6777'
+    green:   '#90ceaa'
+    yellow:  '#ecd3a0'
+    blue:    '#86aaec'
+    magenta: '#c296eb'
+    cyan:    '#93cee9'
+    white:   '#cbced3'
 
   bright:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
+    black:   '#3d414f'
+    red:     '#dd6777'
+    green:   '#90ceaa'
+    yellow:  '#ecd3a0'
+    blue:    '#86aaec'
+    magenta: '#c296eb'
+    cyan:    '#93cee9'
+    white:   '#cbced3'
     
   cursor:
-    cursor: '#c3a5e6'
-    text:	'#1f1d29'
+    cursor: '#a5b6cf'
+    text:	'#0d0f18'
 
 selection:
   save_to_clipboard: false

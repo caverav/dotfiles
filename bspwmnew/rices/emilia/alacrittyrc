@@ -32,35 +32,36 @@ font:
 
   size: 10
 
-# Colors (Rose-Pine Moon) Cristina Rice
+# Colors (Tokyo Night) Emilia Rice
 colors:
+    
   primary:
-    background: '#1f1d29'
-    foreground: '#eaeaea'
+    background: '#1a1b26'
+    foreground: '#c0caf5'
 
   normal:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#eabbb9'
-    white:   '#faebd7'
+    black:   '#414868'
+    red:     '#f7768e'
+    green:   '#9ece6a'
+    yellow:  '#e0af68'
+    blue:    '#7aa2f7'
+    magenta: '#bb9af7'
+    cyan:    '#7dcfff'
+    white:   '#787c99'
 
   bright:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
+    black:   '#414868'
+    red:     '#f7768e'
+    green:   '#9ece6a'
+    yellow:  '#e0af68'
+    blue:    '#7aa2f7'
+    magenta: '#bb9af7'
+    cyan:    '#7dcfff'
+    white:   '#c0caf5'
     
   cursor:
-    cursor: '#c3a5e6'
-    text:	'#1f1d29'
+    cursor: '#bb9af7'
+    text:	'#1a1b26'
 
 selection:
   save_to_clipboard: false

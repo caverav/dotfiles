@@ -32,35 +32,35 @@ font:
 
   size: 10
 
-# Colors (Rose-Pine Moon) Cristina Rice
+# Colors (i dont know) Andrea Rice
 colors:
   primary:
-    background: '#1f1d29'
-    foreground: '#eaeaea'
+    background: '#F5EEE6'
+    foreground: '#6d6a78'
 
   normal:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#eabbb9'
-    white:   '#faebd7'
+    black:   '#80859d'
+    red:     '#c04364'
+    green:   '#abd77a'
+    yellow:  '#ffcc57'
+    blue:    '#67d4f1'
+    magenta: '#7a7498'
+    cyan:    '#9bf4d5'
+    white:   '#b0b0b0'
 
   bright:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
+    black:   '#80859d'
+    red:     '#c03f61'
+    green:   '#a1d16c'
+    yellow:  '#f2be47'
+    blue:    '#50bfdc'
+    magenta: '#605692'
+    cyan:    '#83edc8'
+    white:   '#b0b0b0'
     
   cursor:
-    cursor: '#c3a5e6'
-    text:	'#1f1d29'
+    cursor: '#7a7498'
+    text:	'#F5EEE6'
 
 selection:
   save_to_clipboard: false

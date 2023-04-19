@@ -32,35 +32,35 @@ font:
 
   size: 10
 
-# Colors (Rose-Pine Moon) Cristina Rice
+# Colors (CyberPunk) Jan Rice
 colors:
   primary:
-    background: '#1f1d29'
-    foreground: '#eaeaea'
+    background: '#070219'
+    foreground: '#c0caf5'
 
   normal:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#eabbb9'
-    white:   '#faebd7'
+    black:   '#626483'
+    red:     '#fb007a'
+    green:   '#a6e22e'
+    yellow:  '#f3e430'
+    blue:    '#58AFC2'
+    magenta: '#583794'
+    cyan:    '#926BCA'
+    white:   '#d9d9d9'
 
   bright:
-    black:   '#6f6e85'
-    red:     '#ea6f91'
-    green:   '#9bced7'
-    yellow:  '#f1ca93'
-    blue:    '#34738e'
-    magenta: '#c3a5e6'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
-    
+    black:   '#626483'
+    red:     '#fb007a'
+    green:   '#a6e22e'
+    yellow:  '#f3e430'
+    blue:    '#58AFC2'
+    magenta: '#472575'
+    cyan:    '#926BCA'
+    white:   '#f1f1f1'
+   
   cursor:
-    cursor: '#c3a5e6'
-    text:	'#1f1d29'
+    cursor: '#fb007a'
+    text:	'#070219'
 
 selection:
   save_to_clipboard: false
