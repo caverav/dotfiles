@@ -19,4 +19,11 @@ bspc config window_gap 10
 
 # Launch the bar and or eww widgets
 eww -c $HOME/.config/bspwm/rices/cristina/widgets daemon &
-polybar -q cristina-bar -c $HOME/.config/bspwm/rices/cristina/config.ini &
+# polybar -q cristina-bar -c $HOME/.config/bspwm/rices/cristina/config.ini &
+if type "xrandr"; then
+	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+		MONITOR=$m polybar -q cristina-bar -c $HOME/.config/bspwm/rices/cristina/config.ini &
+	done
+else
+	polybar --reload example &
+fi

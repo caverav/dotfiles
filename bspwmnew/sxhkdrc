@@ -12,7 +12,7 @@ super + alt + Return
 	OpenApps --floating
 
 # Menu aplicaciones
-super + @space
+super + shift + Return
 	OpenApps --menu
 
 # Theme Selector
@@ -20,7 +20,7 @@ alt + @space
 	RiceSelector
 
 # Power off, Reboot, Log out, Lockscreen, kill an app
-ctrl + super + alt + {p,r,q,l,k}
+ctrl + super + {p,r,q,l,k}
 	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
 
 # Apps
@@ -64,17 +64,27 @@ super + Escape
 super + alt + w
 	feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/
 
+super + w
+	feh -z --no-fehbg --bg-fill ~/.wallpapers/auto/
+
+# Change wallpaper
+# super + w + {h,l}
+#   {feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/$(ls ~/.config/bspwm/rices/$RICETHEME/walls/ | sort -R | tail -1), \
+#    feh -z --no-fehbg --bg-fill ~/.config/bspwm/rices/$RICETHEME/walls/$(ls ~/.config/bspwm/rices/$RICETHEME/walls/ | sort -R | tail -1)}
+
+
+
 #
 # bspwm hotkeys
 #
 
 # Reload BSPWM
-super + alt + r
+ctrl + shift + r
 	bspc wm -r
 
 # close and kill
-super + {_,shift + }q
-	bspc node -{c,k}
+super + {_,shift + }c
+	bspc node -{k,c}
 
 ####
 
@@ -101,6 +111,9 @@ super + m
 # swap the current node and the biggest node
 super + g
 	bspc node -s biggest
+
+super + space
+    bspc node -t "~"{floating,tiled}
 
 # set the window state
 super + {t,shift + t,s,f}
@@ -176,6 +189,11 @@ super + ctrl + shift + space
 super + alt + {h,j,k,l}
 	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
 
+super + shift + {h,j,k,l}
+  bspc node -z {left -20 0 || bspc node -z right -20 0, \
+                bottom 0 20 || bspc node -z top 0 20,\
+                top 0 -20 || bspc node -z bottom 0 -20,\
+                right 20 0 || bspc node -z left 20 0}
 # contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
 	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
@@ -192,6 +210,12 @@ XF86MonBrightness{Up,Down}
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	Volume{ --inc, --dec, --toggle}
 
+XF86AudioMicMute
+	amixer set Capture toggle
+
 # Music Control
 XF86Audio{Next,Prev,Play,Stop}
 	MediaControl {--next,--previous,--toggle,--stop}
+
+ctrl + alt + l
+    betterlockscreen --lock
