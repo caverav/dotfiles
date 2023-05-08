@@ -454,7 +454,11 @@ return {
 			})
 		end,
 	},
-	["kevinhwang91/nvim-hlslens"] = {},
+	["kevinhwang91/nvim-hlslens"] = {
+		config = function()
+			require("hlslens").setup()
+		end,
+	},
 	["ahmedkhalf/project.nvim"] = {
 		config = function()
 			require("custom.plugins.project")

@@ -10,7 +10,7 @@ local options = {
 			},
 		},
 
-		["core.norg.dirman"] = {
+		["core.dirman"] = {
 			config = {
 				workspaces = {
 					notes = "~/Documents/notes",
@@ -22,7 +22,7 @@ local options = {
 			},
 		},
 
-		["core.norg.concealer"] = {
+		["core.concealer"] = {
 			config = {
 				icons = {
 					todo = icons.todo,
@@ -40,7 +40,7 @@ local options = {
 			},
 		},
 
-		["core.norg.completion"] = {
+		["core.completion"] = {
 			config = {
 				engine = "nvim-cmp",
 			},
