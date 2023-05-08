@@ -248,6 +248,7 @@ alias gcommit='git commit -m '
 alias gpush='xclip -sel clip /home/camilo/authgit && git push && echo 1 | xclip -sel clip'
 # alias vpnusm='sudo openfortivpn vpn.usm.cl:443 -u camilo.verav --trusted-cert 950d71689babb942fb2f1b0d166bae361309069f74e67db6cf79e14d88437eff -p $(bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password')'
 alias vpnusm="bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password' | sed 's/^\"//' | sed 's/\"$//' | xclip -sel clip && sudo openfortivpn vpn.usm.cl:443 -u camilo.verav --trusted-cert 950d71689babb942fb2f1b0d166bae361309069f74e67db6cf79e14d88437eff; echo 1 | xclip -sel clip"
+alias vpndevel="cat ~/develR0X/camilo/pwd.txt | xclip -sel clip && sudo openvpn ~/develR0X/camilo/V_OpenVPNServer_operador01_v.ovpn; echo 1 | xclip -sel clip"
 alias grep='grep --color=auto'
 alias hola='bash .xinitrc & exit & xkill'
 alias ip='ip -c'
