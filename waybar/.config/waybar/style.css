@@ -1,0 +1,217 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, JetBrainsMono, sans-serif;
+    font-size: 16px;
+}
+
+/*---БАР----------------------------------------------------------------*/
+window#waybar {
+    background-color: rgba(43, 48, 59, 0.0);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+    padding: 0;
+    margin: 0;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+
+/*---КНОПКИ-------------------------------------------------------------*/
+button {
+    margin: 0;
+    padding: 10;
+    background-color: #262a32;
+    color: #d8dee8;
+    border-radius: 25;
+}
+
+button:hover {
+    margin: 0;
+    padding: 10;
+    background-color: #262a32;
+    color: #d8dee8;
+    border-radius: 25;
+}
+
+button:focus {
+    margin: 0;
+    padding: 10;
+    background-color: #262a32;
+    color: #d8dee8;
+    border-radius: 25;
+}
+
+
+/*---КНОПКИ ОКОН--------------------------------------------------------*/
+#workspaces {
+    margin: 0;
+}
+
+#workspaces button {
+    padding: 0 14;
+    margin: 5;
+    background-color: #262a32;
+    color: #444b6a;
+    border-radius: 26;
+}
+
+#workspaces button:hover {
+    color: #444b6a;
+}
+
+#workspaces button.active {
+    background-color: #262a32;
+    color: #0db9d7;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+
+/*---ТРЕЙ---------------------------------------------------------------*/
+#tray {
+    padding: 7;
+    margin: 5 0 5 0;
+    background-color: #262a32;
+    color: #d8dee8;
+    border-radius: 15;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+
+/*---CMUS---------------------------------------------------------------*/
+#custom-cmus {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #b9f27c;
+    border-radius: 25;
+}
+
+
+/*---ALSA---------------------------------------------------------------*/
+#custom-alsa {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff9e64;
+    border-radius: 25;
+}
+
+#pulseaudio {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff9e64;
+    border-radius: 25;
+}
+
+#pulseaudio.microphone {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff9e64;
+    border-radius: 25;
+}
+
+#battery {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff9e64;
+    border-radius: 25;
+}
+
+#custom-freedisk {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff9e64;
+    border-radius: 25;
+}
+#cpu {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff9e64;
+    border-radius: 25;
+}
+#memory {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff9e64;
+    border-radius: 25;
+}
+/*---WINDOW-------------------------------------------------------------*/
+#window {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #0db9d7;
+    border-radius: 25;
+}
+
+
+/*---WINDOW-------------------------------------------------------------*/
+#clock {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #ff7a93;
+    border-radius: 25;
+}
+
+
+#mode,
+#language,
+#custom-weather {
+    padding: 0 15 0 15;
+    margin: 5px 0 5px 0;
+    background-color: #262a32;
+    color: #d8dee8;
+    border-radius: 25;
+}
+
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+label:focus {
+    background-color: #ffffff;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 0px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}

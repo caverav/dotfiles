@@ -1,0 +1,165 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top",
+
+    "height": 55,
+    // "width": 1895,
+    "spacing": 10,
+
+
+    "modules-left": ["hyprland/window"],
+    "modules-center": ["wlr/workspaces"],
+    "modules-right": ["custom/cmus", "custom/weather", "tray", "battery", "custom/freedisk", "cpu", "memory", "pulseaudio", "pulseaudio#microphone", "custom/key", "clock"],
+
+"wlr/workspaces": {
+     "format": "{icon}",
+     "on-scroll-up": "hyprctl dispatch workspace e+1",
+     "on-scroll-down": "hyprctl dispatch workspace e-1",
+     "on-click": "activate",
+     "all-outputs": false,
+     "format": "{icon}",
+     "format-icons": {
+             "1": "",
+             "2": "",
+             "3": "",
+             "4": "󱆃",
+             "5": "󰙯",
+             "6": "󰓇",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+    },
+
+"sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    
+"tray": {
+        "spacing": 10,
+        "icon-size": 20
+    },
+    
+  "clock": {
+    "format": "{: %R   %d/%m}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+    
+"custom/cmus": {
+    "format": "   {}",
+    "max-length": 45,
+    "interval": 10,
+    "exec": "cmus-remote -C \"format_print '%F'\"",
+    "exec-if": "pgrep cmus",
+    "on-click": "cmus-remote -u",
+    "on-scroll-up": "cmus-remote --next",
+    "on-scroll-down": "cmus-remote --prev",
+    "escape": true
+},
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+"custom/weather": {
+    "format": "{}",
+    "exec": "~/.config/waybar/openweathermap-simple.sh",
+//    "exec": "curl 'https://wttr.in/?format=1'",
+    "interval": 3600
+},
+
+"custom/key": {
+    "format": "{}",
+    "exec": "~/.config/waybar/key.sh",
+    "interval": 600
+},
+
+"hyprland/window": {
+    "format": "{}",
+    "separate-outputs": false,
+    "max-length": 20
+},
+
+"hyprland/language": {
+    "format": "{}",
+    "format-us": "US",
+    "format-ru": "RU",
+    "keyboard-name": "AT Translated Set 82e38fb0"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "tooltip": false,
+    "format-muted": " Muted",
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    }
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "tooltip": false,
+    "format-source": " {volume}%",
+    "format-source-muted": " Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
+  "custom/freedisk": {
+    "exec": "df -h | grep /dev/nvme0n1p7 | awk '{print $4}'",
+    "interval": 60,
+    "format": " {}"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": " {}%",
+    "max-length": 10,
+    "on-click": ""
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "format-alt": " {used:0.1f}G",
+    "max-length": 10
+  },
+// "custom/alsa": {
+//     "format": "  {}",
+// //  "exec": "amixer get Master | sed -nre 's/.*\\[off\\].*/      \n\nmuted/p; s/.*\\[(.*%)\\].*/    \\1/p'",
+//     "exec": "amixer get Master | awk -F'[][]' 'END{ print $2 }'",
+//     "on-click": "amixer set Master toggle; pkill -x -RTMIN+11 waybar",
+//     "on-scroll-up": "amixer set Master 1+; pkill -x -RTMIN+11 waybar",
+//     "on-scroll-down": "amixer set Master 1-; pkill -x -RTMIN+11 waybar",
+//     "signal": 11,
+//     "interval": 1,
+//     "tooltip": true
+//     },
+//
+//     "custom/media": {
+//         "format": "{icon} {}",
+//         "return-type": "json",
+//         "max-length": 40,
+//         "format-icons": {
+//             "spotify": "",
+//             "default": "🎜"
+//         },
+//
+//         "escape": true,
+//         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+//         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+//     }
+}
+
