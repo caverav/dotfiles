@@ -28,12 +28,12 @@ chatgpt.setup({
 		},
 	},
 	chat_window = {
-		filetype = "chatgpt",
+		filetype = "cg",
 		border = {
 			highlight = "FloatBorder",
 			style = "rounded",
 			text = {
-				top = " ChatGPT ",
+				top = " CG ",
 			},
 		},
 	},

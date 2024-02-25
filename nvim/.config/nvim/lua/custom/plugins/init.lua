@@ -510,4 +510,18 @@ return {
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 	},
+	["jackMort/ChatGPT.nvim"] = {
+    opt = true,
+    keys = {"<leader>gpt"},
+    module_pattern = {"chatgpt*"},
+    after = {"nui.nvim", "telescope.nvim"},
+		config = function()
+			require("custom.plugins.chatgpt-conf").setup()
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	},
 }
