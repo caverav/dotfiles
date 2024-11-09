@@ -1,62 +1,60 @@
-vim.g.airline_powerline_fonts = 1
-vim.g.neovide_cursor_antialiasing = true
-vim.g.neovide_transparency = 0.7
-vim.g.neovide_no_idle = true
-vim.g.neovide_floating_blur_amount_x = 0.8
-vim.g.neovide_floating_blur_amount_y = 0.1
-vim.g.neovide_cursor_vfx_particle_density = 10.0
-vim.g.neovide_hide_mouse_when_typing = true
-vim.g.neovide_confirm_quit = true
-vim.o.guifont = "UbuntuMono Nerd Font"
-if vim.g.neovide == true then
-	vim.api.nvim_set_keymap(
-		"n",
-		"<C-+>",
-		":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>",
-		{ silent = true }
-	)
-	vim.api.nvim_set_keymap(
-		"n",
-		"<C-->",
-		":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>",
-		{ silent = true }
-	)
-	vim.api.nvim_set_keymap("n", "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
-end
--- vim.g.neovide_floating_blur_amount_y = 20
--- vim.g.neovide_floating_blur_amount_x = 20
-vim.defer_fn(function()
-	pcall(require, "impatient")
-end, 0)
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+vim.g.mapleader = " "
 
-require("core")
-require("core.options")
--- setup packer + plugins
---
-local fn = vim.fn
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a" })
-	print("Cloning packer ..")
-	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-
-	-- install plugins + compile their configs
-	vim.cmd("packadd packer.nvim")
-	require("plugins")
-	vim.cmd("PackerSync")
-
-	-- install binaries from mason.nvim & tsparsers
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "PackerComplete",
-		callback = function()
-			vim.cmd("bw | silent! MasonInstallAll") -- close packer window
-			require("packer").loader("nvim-treesitter")
-		end,
-	})
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
 
-pcall(require, "custom")
+vim.opt.rtp:prepend(lazypath)
 
-require("core.utils").load_mappings()
+local lazy_config = require "configs.lazy"
+
+-- load plugins
+require("lazy").setup({
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
+  { import = "plugins" },
+}, lazy_config)
+
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "options"
+require "nvchad.autocmds"
+
+vim.schedule(function()
+  require "mappings"
+end)
+
+ local function save_fold_state()
+   local buf = vim.api.nvim_get_current_buf()
+   local folded_lines = {}
+   for lnum in ipairs(vim.api.nvim_buf_line_count(buf)) do
+     if vim.fn.foldlevel(lnum) > 0 then
+       table.insert(folded_lines, { lnum, vim.fn.foldclosedend(lnum) })
+     end
+   end
+   vim.fn.setreg('z', folded_lines)
+ end
+
+ -- Function to restore fold state
+ local function restore_fold_state()
+   local buf = vim.api.nvim_get_current_buf()
+   if not vim.fn.reg_executablen('z') then return end
+   local folded_lines = vim.fn.getreg('z', 1, true)
+   for _, fold in ipairs(folded_lines) do
+     local lnum = fold[1]
+     local end_lnum = fold[2]
+     if end_lnum == -1 then end_lnum = nil end
+     vim.fn.foldclosed(lnum, end_lnum)
+   end
+ end

@@ -247,14 +247,16 @@ alias gadd='git add .'
 alias gcommit='git commit -m '
 alias gpush='xclip -sel clip /home/camilo/authgit && git push && echo 1 | xclip -sel clip'
 # alias vpnusm='sudo openfortivpn vpn.usm.cl:443 -u camilo.verav --trusted-cert 950d71689babb942fb2f1b0d166bae361309069f74e67db6cf79e14d88437eff -p $(bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password')'
-alias vpnusm="bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password' | sed 's/^\"//' | sed 's/\"$//' | xclip -sel clip && sudo openfortivpn vpn.usm.cl:443 -u camilo.verav --trusted-cert 950d71689babb942fb2f1b0d166bae361309069f74e67db6cf79e14d88437eff; echo 1 | xclip -sel clip"
+# alias vpnusm="bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password' | sed 's/^\"//' | sed 's/\"$//' | xclip -sel clip && sudo openfortivpn vpn.usm.cl:443 -u camilo.verav --trusted-cert 950d71689babb942fb2f1b0d166bae361309069f74e67db6cf79e14d88437eff; echo 1 | xclip -sel clip"
+alias vpnusm="bw get item 3a7c551d-9a88-4eb1-9490-aec3003aeb5b | jq '.login .password' | sed 's/^\"//' | sed 's/\"$//' | xclip -sel clip && sudo openfortivpn vpn.usm.cl:443 -u camilo.verav; echo 1 | xclip -sel clip"
+alias vmdevel="bw get item 564f40a4-d1aa-459d-9873-b11d014de477 | jq '.login .password' | sed 's/^\"//' | sed 's/\"$//' | wl-copy && vmplayer vmrc://camilo-vera@ws01.devel.rocks/?moid=9"
 alias vpndevel="cat ~/develR0X/camilo/pwd.txt | xclip -sel clip && sudo openvpn ~/develR0X/camilo/V_OpenVPNServer_operador01_v.ovpn; echo 1 | xclip -sel clip"
 alias grep='grep --color=auto'
 alias hola='bash .xinitrc & exit & xkill'
 alias ip='ip -c'
 #alias ll='ls -lah'
 #alias ls='ls --color=auto'
-alias osu='wine /home/camilo/.wine/drive_c/users/camilo/Local\ Settings/Application\ Data/osu\!/osu\!.exe'
+# alias osu='wine /home/camilo/.wine/drive_c/users/camilo/Local\ Settings/Application\ Data/osu\!/osu\!.exe'
 alias py=python3
 alias speedtest=/home/camilo/C/ookla-speedtest-1.0.0-x86_64-linux/speedtest
 alias truful='ssh -p 13541 cvera@truful.newtenberg.com'
@@ -443,3 +445,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+
+PATH="/home/camilo/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/camilo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/camilo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/camilo/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/camilo/perl5"; export PERL_MM_OPT;

@@ -6,8 +6,7 @@ window:
 
   decorations: none
 
-  opacity: 0.85
-  #opacity: 1
+  opacity: 1.0
   dynamic_title: true
 
   history: 10000
@@ -31,7 +30,7 @@ font:
     family: JetBrainsMono Nerd Font
     #style: Bold Italic
 
-  size: 18
+  size: 10
 
 # Colors (Rose-Pine Moon) Cristina Rice
 colors:

@@ -4,8 +4,6 @@ if not present then
 	return
 end
 
-require("base46").load_highlight("nvimtree")
-
 local options = {
 	filters = {
 		dotfiles = false,
@@ -84,7 +82,6 @@ local options = {
 }
 
 -- check for any override
-options = require("core.utils").load_override(options, "kyazdani42/nvim-tree.lua")
 vim.g.nvimtree_side = options.view.side
 
 nvimtree.setup(options)

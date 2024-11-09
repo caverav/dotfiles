@@ -1,10 +1,11 @@
 local present, cmp = pcall(require, "cmp")
 
+
 if not present then
 	return
 end
 
-require("base46").load_highlight("cmp")
+local present, lspkind = pcall(require, "lspkind")
 
 vim.opt.completeopt = "menuone,noselect"
 
@@ -29,8 +30,21 @@ cmp_window.info = function(self)
 	info.scrollable = false
 	return info
 end
-
+local tail_col_cmp_ok, tailwindcss_colorizer_cmp = pcall(require, "tailwindcss-colorizer-cmp")
+if not tail_col_cmp_ok then
+  return
+end
 local options = {
+  formatting = {
+      format = lspkind.cmp_format({
+        mode = 'symbol_text',
+        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+        show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+        symbol_map = { Copilot = "" },
+        before = tailwindcss_colorizer_cmp.formatter
+      })
+    },
 	window = {
 		completion = {
 			border = border("CmpBorder"),
@@ -43,13 +57,6 @@ local options = {
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
-		end,
-	},
-	formatting = {
-		format = function(_, vim_item)
-			local icons = require("nvchad_ui.icons").lspkind
-			vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-			return vim_item
 		end,
 	},
 	mapping = {
@@ -78,8 +85,6 @@ local options = {
 		["<C-k>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif require("luasnip").jumpable(-1) then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
 			else
 				fallback()
 			end
@@ -90,8 +95,6 @@ local options = {
 		["<C-j>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif require("luasnip").jumpable(-1) then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-next", true, true, true), "")
 			else
 				fallback()
 			end
@@ -101,6 +104,7 @@ local options = {
 		}),
 	},
 	sources = {
+    { name = "copilot" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
@@ -114,6 +118,5 @@ local options = {
 }
 
 -- check for any override
-options = require("core.utils").load_override(options, "hrsh7th/nvim-cmp")
 
 cmp.setup(options)
