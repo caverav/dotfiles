@@ -1,6 +1,5 @@
 local M = {}
 
-
 M.autopairs = function()
   local present1, autopairs = pcall(require, "nvim-autopairs")
   local present2, cmp = pcall(require, "cmp")
@@ -26,7 +25,6 @@ M.blankline = function()
   if not present then
     return
   end
-
 
   local options = {
     indentLine_enabled = 1,
@@ -128,7 +126,6 @@ M.gitsigns = function()
     return
   end
 
-
   local options = {
     signs = {
       add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
@@ -146,7 +143,6 @@ M.devicons = function()
   local present, devicons = pcall(require, "nvim-web-devicons")
 
   if present then
-
     local options = { override = require("nvchad.icons").devicons }
 
     devicons.setup(options)

@@ -401,10 +401,10 @@ return {
   },
 
   {
-    "xiyaowong/nvim-transparent",
-    lazy = true,
+    "xiyaowong/transparent.nvim",
+    lazy = false,
     config = function()
-      require "plugins.configs.transparent"
+      require("transparent").setup()
     end,
   },
 
@@ -540,6 +540,40 @@ return {
       require "plugins.configs.codecompanion"
     end,
   },
+  {
+    "f-person/git-blame.nvim",
+    lazy = false,
+    config = function()
+      require("gitblame").setup()
+    end,
+  },
+  {
+    "code-biscuits/nvim-biscuits",
+    config = function()
+      require("nvim-biscuits").setup()
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  {
+    "ekickx/clipboard-image.nvim",
+    lazy = false,
+    config = function()
+      require("clipboard-image").setup()
+    end,
+  },
+  {
+    "chipsenkbeil/distant.nvim",
+    branch = "v0.3",
+    lazy = false,
+    config = function()
+      require("distant"):setup {
+        ["network.private"] = true,
+      }
+    end,
+  },
+
   -- {
   --   "MunifTanjim/eslint.nvim",
   --   lazy = true,
