@@ -1,0 +1,4 @@
+theme = Framer
+# theme = NvimLight
+background-opacity = 0.3
+window-decoration = false
